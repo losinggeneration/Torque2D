@@ -1,0 +1,14 @@
+# Normalize line endings (crlf -> lf)
+*.cpp text diff=cpp
+*.cc text diff=cpp
+*.h text diff=cpp
+*.c text diff=cpp
+*.mm text diff=objc
+*.cs text
+*.taml text
+*.y text
+*.l text
+*.asm text
+*.sln text
+*.bat text
+*.simple text
