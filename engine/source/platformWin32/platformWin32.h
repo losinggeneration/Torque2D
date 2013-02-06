@@ -113,12 +113,12 @@ extern void setModifierKeys( S32 modKeys );
 
 #define WGLD3D_FUNCTION(fn_type, fn_name, fn_args, fn_value) extern fn_type (__stdcall *dwgl##fn_name)fn_args;
 #define WGL_FUNCTION(fn_type, fn_name, fn_args, fn_value) extern fn_type (__stdcall *d##fn_name)fn_args;
-#include "platformWin32/GLWinFunc.h"
+#include "platformWin32/glWinFunc.h"
 #undef WGL_FUNCTION
 #undef WGLD3D_FUNCTION
 
 #define WGLEXT_FUNCTION(fn_type, fn_name, fn_args, fn_value) extern fn_type (__stdcall *d##fn_name)fn_args;
-#include "platformWin32/GLWinExtFunc.h"
+#include "platformWin32/glWinExtFunc.h"
 #undef WGLEXT_FUNCTION
 
 #endif //_PLATFORMWIN32_H_

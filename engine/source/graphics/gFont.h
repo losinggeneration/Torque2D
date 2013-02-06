@@ -43,7 +43,7 @@
 #include "io/resource/resourceManager.h"
 #endif
 
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 
 //-Mat use this to make space characters default to a certain x increment
 #define PUAP_SPACE_CHAR_X_INCREMENT	5

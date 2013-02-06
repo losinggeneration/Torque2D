@@ -42,7 +42,7 @@
 #include "debug/telnetDebugger.h"
 
 #ifndef _REMOTE_DEBUGGER_BASE_H_
-#include "debug/remote/RemoteDebuggerBase.h"
+#include "debug/remote/remoteDebuggerBase.h"
 #endif
 
 using namespace Compiler;

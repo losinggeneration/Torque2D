@@ -27,11 +27,11 @@
 #include "gui/buttons/guiButtonCtrl.h"
 #endif
 #ifndef _TEXTURE_MANAGER_H_
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ASSET_PTR_H_

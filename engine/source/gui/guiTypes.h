@@ -40,7 +40,7 @@
 #endif
 
 #ifndef _TEXTURE_MANAGER_H_
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #endif
 
 #ifndef _PLATFORMAUDIO_H_

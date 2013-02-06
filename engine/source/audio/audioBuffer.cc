@@ -32,7 +32,7 @@
 
 #ifdef TORQUE_OS_IOS
 //Luma:	include proper path for this file
-#include "platformiOS/SoundEngine.h"
+#include "platformiOS/soundEngine.h"
 #endif
 
 

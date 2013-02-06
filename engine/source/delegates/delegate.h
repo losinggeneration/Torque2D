@@ -23,7 +23,7 @@
 #ifndef _DELEGATE_H_
 #define _DELEGATE_H_
 
-#include "FastDelegate.h"
+#include "fastDelegate.h"
 
 /// @def Delegate
 /// The macro which abstracts the details of the delegate implementation.

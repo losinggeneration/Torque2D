@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _GUIIMAGEBUTTON_H_
-#include "2d/gui/GuiImageButtonCtrl.h"
+#include "2d/gui/guiImageButtonCtrl.h"
 #endif
 
 #ifndef _RENDER_PROXY_H_
-#include "2d/core/RenderProxy.h"
+#include "2d/core/renderProxy.h"
 #endif
 
 #ifndef _DGL_H_

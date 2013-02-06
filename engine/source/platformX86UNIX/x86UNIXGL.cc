@@ -31,14 +31,14 @@
 
 // declare stub functions
 #define GL_FUNCTION(fn_return, fn_name, fn_args, fn_value) fn_return stub_##fn_name fn_args{ fn_value }
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
 #undef GL_FUNCTION
 
 // point gl function pointers at stub functions
 #define GL_FUNCTION(fn_return,fn_name,fn_args, fn_value) fn_return (*fn_name)fn_args = stub_##fn_name;
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
 #undef GL_FUNCTION
 
 static void* dlHandle = NULL;
@@ -47,7 +47,7 @@ static void* dlHandle = NULL;
 //bind functions for each function prototype
 //------------------------------------------------------------------
 
-//GL_EXT/ARB
+//gl_EXT/ARB
 enum {
    ARB_multitexture              = BIT(0),
    ARB_texture_compression       = BIT(1),
@@ -129,7 +129,7 @@ static bool bindGLFunctions()
    bool result = true;
    #define GL_FUNCTION(fn_return, fn_name, fn_args, fn_value) \
    result &= bindGLFunction( *(void**)&fn_name, #fn_name);
-   #include "platform/GLCoreFunc.h"
+   #include "platform/glCoreFunc.h"
    #undef GL_FUNCTION
    return result;
 }
@@ -144,7 +144,7 @@ static bool bindEXTFunctions(U32 extMask)
 
    #define GL_FUNCTION(fn_return, fn_name, fn_args, fn_value) \
    result &= bindEXTFunction( *(void**)&fn_name, #fn_name);
-   #include "platform/GLExtFunc.h"
+   #include "platform/glExtFunc.h"
    #undef GL_FUNCTION
 
    #undef GL_GROUP_BEGIN
@@ -157,8 +157,8 @@ static void unbindGLFunctions()
 {
    // point gl function pointers at stub functions
 #define GL_FUNCTION(fn_return, fn_name, fn_args, fn_value) fn_name = stub_##fn_name;
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
 #undef GL_FUNCTION
 }
 
