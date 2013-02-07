@@ -26,7 +26,7 @@
 #include "platformX86UNIX/x86UNIXState.h"
 #include "platformX86UNIX/x86UNIXStdConsole.h"
 #include "platformX86UNIX/x86UNIXMutex.h"
-#include "platform/gameInterface.h"
+#include "game/gameInterface.h"
 #include "platform/platformVideo.h"
 #include "platform/platformInput.h"
 #include "console/console.h"

@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 
-#include "dgl/gFont.h"
-#include "dgl/gBitmap.h"
+#include "graphics/gFont.h"
+#include "graphics/gBitmap.h"
 #include "math/mRect.h"
 #include "console/console.h"
-#include "core/unicode.h"
+#include "string/unicode.h"
 #include "platformX86UNIX/platformX86UNIX.h"
 #include "platformX86UNIX/x86UNIXFont.h"
 

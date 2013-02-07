@@ -22,7 +22,7 @@
 
 
 
-#include "platform/platformThread.h"
+#include "platform/threads/thread.h"
 #include "platformX86UNIX/platformX86UNIX.h"
 #include "platform/platformSemaphore.h"
 

@@ -50,12 +50,12 @@
  #endif
  
  #include "platformX86UNIX/platformX86UNIX.h"
- #include "core/fileio.h"
- #include "core/tVector.h"
- #include "core/stringTable.h"
+ #include "platform/platformFileIO.h"
+ #include "collection/vector.h"
+ #include "string/stringTable.h"
  #include "console/console.h"
- #include "core/resManager.h"
- #include "platform/gameInterface.h" 
+ #include "io/resource/resourceManager.h"
+ #include "game/gameInterface.h" 
 
  #if defined(__FreeBSD__)
     #include <sys/types.h>

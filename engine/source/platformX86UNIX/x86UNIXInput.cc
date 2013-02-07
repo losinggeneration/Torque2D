@@ -26,7 +26,7 @@
 #include "platform/platformInput.h"
 #include "platform/platformVideo.h"
 #include "platform/event.h"
-#include "platform/gameInterface.h"
+#include "game/gameInterface.h"
 #include "console/console.h"
 #include "platformX86UNIX/x86UNIXState.h"
 #include "platformX86UNIX/x86UNIXInputManager.h"
