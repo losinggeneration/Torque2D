@@ -286,38 +286,6 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/platform/platformVideo.cc
 	${TORQUE2D_SRCDIR}/platform/menus/popupMenu.cc
 	${TORQUE2D_SRCDIR}/platform/nativeDialogs/msgBox.cpp
-#	${TORQUE2D_SRCDIR}/platformWin32/cardProfile.cpp
-#	${TORQUE2D_SRCDIR}/platformWin32/winAsmBlit.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winConsole.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winCPUInfo.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winDInputDevice.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winDirectInput.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winExec.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winFileio.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winFont.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winGL.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winGLSpecial.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winInput.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winMath.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winMath_ASM.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winMemory.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winNet.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winOGLVideo.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winOpenAL.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winProcessControl.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winSemaphore.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winStrings.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winTime.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winTLS.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winUser.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winVFS.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winVideo.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/winWindow.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/menus/popupMenuWin32.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.cpp
-#	${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32MsgBox.cpp
-#	${TORQUE2D_SRCDIR}/platformWin32/threads/mutex.cc
-#	${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
 	${TORQUE2D_SRCDIR}/platform/tickable.cc
 	${TORQUE2D_SRCDIR}/sim/scriptGroup.cc
 	${TORQUE2D_SRCDIR}/sim/scriptObject.cc
@@ -817,6 +785,72 @@ set(TORQUE2D_HEADERS
 #<ProjectReference Include="ljpeg.vcxproj">
 #<ProjectReference Include="lpng.vcxproj">
 #<ProjectReference Include="zlib.vcxproj">
+
+if(WIN32)
+	list(APPEND TORQUE2D_SRCS
+		${TORQUE2D_SRCDIR}/platformWin32/cardProfile.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/winAsmBlit.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winConsole.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winCPUInfo.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winDInputDevice.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winDirectInput.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winExec.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winFileio.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winFont.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winGL.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winGLSpecial.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winInput.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winMath.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winMath_ASM.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winMemory.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winNet.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winOGLVideo.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winOpenAL.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winProcessControl.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winSemaphore.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winStrings.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winTime.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winTLS.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winUser.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winVFS.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winVideo.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winWindow.cc
+		${TORQUE2D_SRCDIR}/platformWin32/menus/popupMenuWin32.cc
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32MsgBox.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/threads/mutex.cc
+		${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
+	)
+elseif(UNIX)
+	list(APPEND TORQUE2D_SRCS
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXAsmBlit.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXConsole.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXCPUInfo.cc
+# 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXDedicatedStub.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFileio.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFont.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXGL.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXInput.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXInputManager.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXIO.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMath_ASM.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMath.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMemory.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMessageBox.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMutex.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXNet.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXOGLVideo.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXOpenAL.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXProcessControl.cc
+# 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXRedbook.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXSemaphore.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXStrings.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXThread.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXTime.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUtils.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXWindow.cc
+	)
+	endif()
 
 set(DEBUG 1)
 
