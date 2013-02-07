@@ -24,7 +24,7 @@
 
 #include "console/console.h"
 #include "platformX86UNIX/platformX86UNIX.h"
-#include "platform/platformMutex.h"
+#include "platform/threads/mutex.h"
 #include "platformX86UNIX/x86UNIXMutex.h"
 
 #include <pthread.h>
@@ -33,9 +33,28 @@
 #include <fcntl.h>
 #include <errno.h>
 
-void * Mutex::createMutex()
+//////////////////////////////////////////////////////////////////////////
+// Mutex Data
+//////////////////////////////////////////////////////////////////////////
+
+struct PlatformMutexData
 {
-   pthread_mutex_t *mutex;
+	pthread_mutex_t *mMutex;
+	
+	PlatformMutexData()
+	{
+		mMutex = NULL;
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+// Constructor/Destructor
+//////////////////////////////////////////////////////////////////////////
+
+
+Mutex::Mutex()
+{
+   pthread_mutex_t *mutex = mData->mMutex;
    pthread_mutexattr_t attr;
 
    pthread_mutexattr_init(&attr);
@@ -43,21 +62,24 @@ void * Mutex::createMutex()
    
    mutex = new pthread_mutex_t;
    pthread_mutex_init(mutex, &attr);
-   
-   return((void*)mutex);
 }
 
-void Mutex::destroyMutex(void * mutex)
+Mutex::~Mutex()
 {
-   pthread_mutex_t *pt_mutex = reinterpret_cast<pthread_mutex_t*>(mutex);
+   pthread_mutex_t *pt_mutex = mData->mMutex;
    AssertFatal(pt_mutex, "Mutex::destroyMutex: invalid mutex");
    pthread_mutex_destroy(pt_mutex);
    delete pt_mutex;
+   mData->mMutex = NULL;
 }
 
-bool Mutex::lockMutex(void * mutex, bool block)
+//////////////////////////////////////////////////////////////////////////
+// Public Methods
+//////////////////////////////////////////////////////////////////////////
+
+bool Mutex::lock(bool block)
 {
-   pthread_mutex_t *pt_mutex = reinterpret_cast<pthread_mutex_t*>(mutex);
+   pthread_mutex_t *pt_mutex = mData->mMutex;
    AssertFatal(pt_mutex, "Mutex::lockMutex: invalid mutex");
    if(block)
    {
@@ -69,9 +91,9 @@ bool Mutex::lockMutex(void * mutex, bool block)
    }
 }
 
-void Mutex::unlockMutex(void * mutex)
+void Mutex::unlock()
 {
-   pthread_mutex_t *pt_mutex = reinterpret_cast<pthread_mutex_t*>(mutex);
+   pthread_mutex_t *pt_mutex = mData->mMutex;
    AssertFatal(pt_mutex, "Mutex::unlockMutex: invalid mutex");
    pthread_mutex_unlock(pt_mutex);
 }
