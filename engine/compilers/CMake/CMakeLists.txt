@@ -272,7 +272,6 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/math/mSolver.cc
 	${TORQUE2D_SRCDIR}/math/mSplinePatch.cc
 	${TORQUE2D_SRCDIR}/persistence/simXMLDocument.cpp
-#	${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32FileDialog.cc
 	${TORQUE2D_SRCDIR}/platform/cursorManager.cc
 	${TORQUE2D_SRCDIR}/platform/nativeDialogs/fileDialog.cc
 	${TORQUE2D_SRCDIR}/platform/platform.cc
@@ -788,6 +787,7 @@ set(TORQUE2D_HEADERS
 
 if(WIN32)
 	list(APPEND TORQUE2D_SRCS
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32FileDialog.cc
 		${TORQUE2D_SRCDIR}/platformWin32/cardProfile.cpp
 		${TORQUE2D_SRCDIR}/platformWin32/winAsmBlit.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winConsole.cc
@@ -821,6 +821,10 @@ if(WIN32)
 		${TORQUE2D_SRCDIR}/platformWin32/threads/mutex.cc
 		${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
 	)
+
+	list(APPEND TORQUE2D_INC_DIRS
+		${TORQUE2D_LIBDIR}/openal/win32
+	)
 elseif(UNIX)
 	list(APPEND TORQUE2D_SRCS
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXAsmBlit.cc
@@ -852,7 +856,10 @@ elseif(UNIX)
 	)
 
 	find_package(Freetype REQUIRED)
-	list(APPEND TORQUE2D_INC_DIRS ${FREETYPE_INCLUDE_DIRS})
+	list(APPEND TORQUE2D_INC_DIRS
+		${TORQUE2D_LIBDIR}/openal/LINUX
+		${FREETYPE_INCLUDE_DIRS}
+	)
 	list(APPEND TORQUE2D_LIBS ${FREETYPE_LIBRARY})
 endif()
 
