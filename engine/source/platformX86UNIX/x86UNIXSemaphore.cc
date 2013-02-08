@@ -21,29 +21,39 @@
 //-----------------------------------------------------------------------------
 
 #include "platformX86UNIX/platformX86UNIX.h"
-#include "platform/platformSemaphore.h"
+#include "platform/threads/semaphore.h"
 // Instead of that mess that was here before, lets use the SDL lib to deal
 // with the semaphores.
 
 #include <SDL/SDL.h>
 #include <SDL/SDL_thread.h>
 
-void *Semaphore::createSemaphore(U32 initialCount)
+struct PlatformSemaphore {
+	SDL_sem *sem;
+
+	PlatformSemaphore() {
+		sem = NULL;
+	}
+};
+
+Semaphore::Semaphore(S32 initialCount)
 {
-  SDL_sem *semaphore;
+  SDL_sem *semaphore = mData->sem;
   semaphore = SDL_CreateSemaphore(initialCount);
   AssertFatal(semaphore, "Semaphore::createSemaphore - Failed.");
-  return semaphore;
 }
 
-void Semaphore::destroySemaphore(void *semaphore)
+Semaphore::~Semaphore()
 {
-  AssertFatal(semaphore, "Semaphore::destroySemaphore - Invalid semaphore");
-  SDL_DestroySemaphore((SDL_sem *)semaphore);
+  AssertFatal(mData->sem, "Semaphore::destroySemaphore - Invalid semaphore");
+  SDL_DestroySemaphore(mData->sem);
+  mData->sem = NULL;
 }
 
-bool Semaphore::acquireSemaphore(void *semaphore, bool block)
+// TODO timeoutMS -- HL
+bool Semaphore::acquire(bool block, S32 timeoutMS)
 {
+  SDL_sem *semaphore = mData->sem;
   AssertFatal(semaphore, "Semaphore::acquireSemaphore - Invalid semaphore");
   if (block)
     {
@@ -60,9 +70,8 @@ bool Semaphore::acquireSemaphore(void *semaphore, bool block)
     }
 }
 
-void Semaphore::releaseSemaphore(void *semaphore)
+void Semaphore::release()
 {
-  AssertFatal(semaphore, "Semaphore::releaseSemaphore - Invalid semaphore");
-  SDL_SemPost((SDL_sem *)semaphore);
+  AssertFatal(mData->sem, "Semaphore::releaseSemaphore - Invalid semaphore");
+  SDL_SemPost(mData->sem);
 }
-
