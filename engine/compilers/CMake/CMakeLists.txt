@@ -850,7 +850,11 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUtils.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXWindow.cc
 	)
-	endif()
+
+	find_package(Freetype REQUIRED)
+	list(APPEND TORQUE2D_INC_DIRS ${FREETYPE_INCLUDE_DIRS})
+	list(APPEND TORQUE2D_LIBS ${FREETYPE_LIBRARY})
+endif()
 
 set(DEBUG 1)
 
@@ -859,10 +863,11 @@ if(DEBUG)
 		${TORQUE2D_LIBDIR}/zlib
 		${TORQUE2D_LIBDIR}/lpng
 		${TORQUE2D_LIBDIR}/ljpeg
-		${TORQUE2D_LIBDIR}/openal/win32
+# 		${TORQUE2D_LIBDIR}/openal/win32
 		${TORQUE2D_SRCDIR}
 		${TORQUE2D_SRCDIR}/testing/googleTest
 		${TORQUE2D_SRCDIR}/testing/googleTest/include
+		${TORQUE2D_INC_DIRS}
 	)
 	add_definitions(
 		-DTORQUE_DEBUG
@@ -877,6 +882,7 @@ if(DEBUG)
 		png
 		jpeg
 		z
+		${TORQUE2D_LIBS}
 #		comctl32
 # 		comdlg32
 # 		user32
