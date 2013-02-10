@@ -26,6 +26,7 @@
 #include <stdarg.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <wchar.h>
 
 #ifdef HAS_VSSCANF
 #  undef HAS_VSSCANF
@@ -70,8 +71,8 @@ char *stristr(char *szStringToBeSearched, const char *szSubstringToSearchFor)
    char *szCopy2 = NULL;
 
    // verify parameters
-   if ( szStringToBeSearched == NULL || 
-        szSubstringToSearchFor == NULL ) 
+   if ( szStringToBeSearched == NULL ||
+        szSubstringToSearchFor == NULL )
    {
       return szStringToBeSearched;
    }
@@ -114,7 +115,7 @@ char *dStrdup_r(const char *src, const char *fileName, U32 lineNumber)
 char* dStrcat(char *dst, const char *src)
 {
    return strcat(dst,src);
-}   
+}
 
 char* dStrncat(char *dst, const char *src, U32 len)
 {
@@ -133,9 +134,9 @@ char* dStrcatl(char *dst, U32 dstSize, ...)
    dstSize--;  // leave room for string termination
 
    // find end of dst
-   while (dstSize && *p++)                    
-      dstSize--;   
-   
+   while (dstSize && *p++)
+      dstSize--;
+
    va_list args;
    va_start(args, dstSize);
 
@@ -144,16 +145,16 @@ char* dStrcatl(char *dst, U32 dstSize, ...)
       while( dstSize && *src )
       {
          *p++ = *src++;
-         dstSize--;   
+         dstSize--;
       }
 
    va_end(args);
 
-   // make sure the string is terminated 
+   // make sure the string is terminated
    *p = 0;
 
    return dst;
-}   
+}
 
 
 // copy a list of src's into dst
@@ -175,52 +176,57 @@ char* dStrcpyl(char *dst, U32 dstSize, ...)
       while( dstSize && *src )
       {
          *p++ = *src++;
-         dstSize--;   
+         dstSize--;
       }
 
    va_end(args);
 
-   // make sure the string is terminated 
+   // make sure the string is terminated
    *p = 0;
 
    return dst;
-}   
+}
 
 
 S32 dStrcmp(const char *str1, const char *str2)
 {
-   return strcmp(str1, str2);   
-}  
- 
+   return strcmp(str1, str2);
+}
+
+int dStrcmp(const UTF16 *str1, const UTF16 *str2)
+{
+	return 	(str1, str2);
+}
+
 S32 dStricmp(const char *str1, const char *str2)
 {
-   return strcasecmp(str1, str2);   
-}  
+   return strcasecmp(str1, str2);
+}
 
 S32 dStrncmp(const char *str1, const char *str2, U32 len)
 {
-   return strncmp(str1, str2, len);   
-}  
- 
+   return strncmp(str1, str2, len);
+}
+
 S32 dStrnicmp(const char *str1, const char *str2, U32 len)
 {
-   return strncasecmp(str1, str2, len);   
-}   
+   return strncasecmp(str1, str2, len);
+}
 
 char* dStrcpy(char *dst, const char *src)
 {
    return strcpy(dst,src);
-}   
+}
 
 char* dStrncpy(char *dst, const char *src, U32 len)
 {
    return strncpy(dst,src,len);
-}   
+}
 
 U32 dStrlen(const char *str)
 {
    return strlen(str);
-}   
+}
 
 
 char* dStrupr(char *str)
@@ -231,36 +237,36 @@ char* dStrupr(char *str)
 #else
    return __strtoup(str);
 #endif
-}   
+}
 
 
 char* dStrlwr(char *str)
 {
    return __strtolwr(str);
-}   
+}
 
 
 char* dStrchr(char *str, S32 c)
 {
    return strchr(str,c);
-}   
+}
 
 
 const char* dStrchr(const char *str, S32 c)
 {
    return strchr(str,c);
-}   
+}
 
 
 const char* dStrrchr(const char *str, S32 c)
 {
    return strrchr(str,c);
-}   
+}
 
 char* dStrrchr(char *str, S32 c)
 {
    return strrchr(str,c);
-}   
+}
 
 U32 dStrspn(const char *str, const char *set)
 {
@@ -270,7 +276,7 @@ U32 dStrspn(const char *str, const char *set)
 U32 dStrcspn(const char *str, const char *set)
 {
    return strcspn(str, set);
-}   
+}
 
 
 char* dStrstr(char *str1, char *str2)
@@ -291,19 +297,47 @@ char* dStrtok(char *str, const char *sep)
 
 S32 dAtoi(const char *str)
 {
-   return atoi(str);   
-}  
+   return atoi(str);
+}
 
 F32 dAtof(const char *str)
 {
-   return atof(str);   
-}   
+   return atof(str);
+}
 
 bool dAtob(const char *str)
 {
    return !dStricmp(str, "true") || dAtof(str);
-}   
+}
 
+
+int dStrrev(char* str)
+{
+	int l=dStrlen(str)-1; //get the string length
+	for(int x=0;x < l;x++,l--)
+	{
+		str[x]^=str[l];  //triple XOR Trick
+		str[l]^=str[x];  //for not using a temp
+		str[x]^=str[l];
+	}
+	return l;
+}
+int dItoa(int n, char s[])
+{
+	int i, sign;
+
+	if ((sign = n) < 0)  /* record sign */
+		n = -n;          /* make n positive */
+		i = 0;
+	do {       /* generate digits in reverse order */
+		s[i++] = n % 10 + '0';   /* get next digit */
+	} while ((n /= 10) > 0);     /* delete it */
+	if (sign < 0)
+		s[i++] = '-';
+	s[i] = '\0';
+	dStrrev(s);
+	return dStrlen(s);
+}
 
 bool dIsalnum(const char c)
 {
@@ -330,13 +364,13 @@ void dPrintf(const char *format, ...)
    va_list args;
    va_start(args, format);
    vprintf(format, args);
-}   
+}
 
 S32 dVprintf(const char *format, void *arglist)
 {
    S32 len = vprintf(format, (char*)arglist);
    return (len);
-}   
+}
 
 S32 dSprintf(char *buffer, U32 bufferSize, const char *format, ...)
 {
@@ -345,14 +379,14 @@ S32 dSprintf(char *buffer, U32 bufferSize, const char *format, ...)
 
    S32 len = vsnprintf(buffer, bufferSize, format, args);
    return (len);
-}   
+}
 
 
 S32 dVsprintf(char *buffer, U32 bufferSize, const char *format, void *arglist)
 {
    S32 len = vsnprintf(buffer, bufferSize, format, (char*)arglist);
    return (len);
-}   
+}
 
 
 S32 dSscanf(const char *buffer, const char *format, ...)
@@ -360,7 +394,7 @@ S32 dSscanf(const char *buffer, const char *format, ...)
    va_list args;
 #if defined(HAS_VSSCANF)
    va_start(args, format);
-   return __vsscanf(buffer, format, args);   
+   return __vsscanf(buffer, format, args);
 #else
    va_start(args, format);
 
@@ -407,7 +441,7 @@ S32 dSscanf(const char *buffer, const char *format, ...)
    }
    return 0;
 #endif
-}   
+}
 
 S32 dFflushStdout()
 {
@@ -422,5 +456,5 @@ S32 dFflushStderr()
 void dQsort(void *base, U32 nelem, U32 width, S32 (QSORT_CALLBACK *fcmp)(const void *, const void *))
 {
    qsort(base, nelem, width, fcmp);
-}   
+}
 

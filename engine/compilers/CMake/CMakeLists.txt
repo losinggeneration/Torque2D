@@ -825,8 +825,25 @@ if(WIN32)
 	list(APPEND TORQUE2D_INC_DIRS
 		${TORQUE2D_LIBDIR}/openal/win32
 	)
+	list(APPEND TORQUE2D_LIBS
+		COMCTL32
+ 		COMDLG32
+ 		USER32
+ 		ADVAPI32
+ 		GDI32
+ 		RPCRT4
+ 		WINMM
+ 		WSOCK32
+ 		VFW32
+ 		IMM32
+ 		UNICOWS
+ 		SHELL32
+ 		SHLWAPI
+ 		OLE32
+	)
 elseif(UNIX)
 	list(APPEND TORQUE2D_SRCS
+		${TORQUE2D_SRCDIR}/platform/platformNetAsync.unix.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXAsmBlit.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXConsole.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXCPUInfo.cc
@@ -851,16 +868,38 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXStrings.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXThread.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXTime.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUser.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUtils.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXWindow.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/menus/popupMenuX86UNIX.cc
 	)
 
+	find_package(SDL REQUIRED)
 	find_package(Freetype REQUIRED)
+	find_package(JPEG REQUIRED)
+	find_package(PNG REQUIRED)
+	find_package(OpenAL REQUIRED)
+	find_package(X11)
+	if(NOT X11_Xft_FOUND)
+		message(FATAL "X11 Xft not found")
+	endif()
 	list(APPEND TORQUE2D_INC_DIRS
 		${TORQUE2D_LIBDIR}/openal/LINUX
 		${FREETYPE_INCLUDE_DIRS}
+		${SDL_INCLUDE_DIR}
+		${JPEG_INCLUDE_DIR}
+		${PNG_INCLUDE_DIR}
+		${OPENAL_INCLUDE_DIR}
+		${X11_Xft_INCLUDE_PATH}
 	)
-	list(APPEND TORQUE2D_LIBS ${FREETYPE_LIBRARY})
+	list(APPEND TORQUE2D_LIBS
+		${FREETYPE_LIBRARIES}
+		${SDL_LIBRARY}
+		${JPEG_LIBRARIES}
+		${PNG_LIBRARIES}
+		${OPENAL_LIBRARY}
+		${X11_Xft_LIB}
+	)
 endif()
 
 set(DEBUG 1)
@@ -886,24 +925,7 @@ if(DEBUG)
 	set (CMAKE_CXX_FLAGS "-m32 -fpermissive -w")
 	target_link_libraries(Torque2D_DEBUG
 		pthread
-		png
-		jpeg
-		z
 		${TORQUE2D_LIBS}
-#		comctl32
-# 		comdlg32
-# 		user32
-# 		advapi32
-# 		gdi32
-# 		rpcrt4
-# 		winmm
-# 		wsock32
-# 		vfw32
-# 		imm32
-# 		unicows
-# 		shell32
-# 		shlwapi
-# 		ole32
 	)
 	#../../Lib/unicode;../../lib/MSPlatformSDK/Lib;
 endif()
