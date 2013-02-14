@@ -586,6 +586,16 @@ void Platform::disableKeyboardTranslation(void)
 // #endif
 // }
 
+//--------------------------------------
+void Platform::setMouseLock(bool locked)
+{
+   // TODO --HL
+#if 0
+   windowLocked = locked;
+   setMouseClipping();
+#endif
+}
+
 //------------------------------------------------------------------------------
 void Platform::minimizeWindow()
 {

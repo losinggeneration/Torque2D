@@ -848,6 +848,7 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXConsole.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXCPUInfo.cc
 # 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXDedicatedStub.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXExec.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFileio.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFont.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXGL.cc
@@ -879,6 +880,7 @@ elseif(UNIX)
 	find_package(JPEG REQUIRED)
 	find_package(PNG REQUIRED)
 	find_package(OpenAL REQUIRED)
+	find_package(GLU REQUIRED)
 	find_package(X11)
 	if(NOT X11_Xft_FOUND)
 		message(FATAL "X11 Xft not found")
@@ -891,6 +893,7 @@ elseif(UNIX)
 		${PNG_INCLUDE_DIR}
 		${OPENAL_INCLUDE_DIR}
 		${X11_Xft_INCLUDE_PATH}
+		${GLU_INCLUDE_PATH}
 	)
 	list(APPEND TORQUE2D_LIBS
 		${FREETYPE_LIBRARIES}
@@ -899,6 +902,9 @@ elseif(UNIX)
 		${PNG_LIBRARIES}
 		${OPENAL_LIBRARY}
 		${X11_Xft_LIB}
+		${X11_LIBRARIES} # TODO use only libraries needed
+		${CMAKE_DL_LIBS}
+		${GLU_LIBRARY}
 	)
 endif()
 

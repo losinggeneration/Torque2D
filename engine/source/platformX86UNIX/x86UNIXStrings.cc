@@ -24,9 +24,15 @@
 
 #include "platformX86UNIX/platformX86UNIX.h"
 #include <stdarg.h>
+#include <stdint.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <time.h>
 #include <wchar.h>
+
+#ifndef _STRINGTABLE_H_
+#include "string/stringTable.h"
+#endif
 
 #ifdef HAS_VSSCANF
 #  undef HAS_VSSCANF
@@ -458,3 +464,43 @@ void dQsort(void *base, U32 nelem, U32 width, S32 (QSORT_CALLBACK *fcmp)(const v
    qsort(base, nelem, width, fcmp);
 }
 
+//-----------------------------------------------------------------------------
+
+typedef struct
+{
+   uint32_t one;
+   uint16_t two;
+   uint16_t three;
+   uint16_t four;
+   uint32_t five[2];
+} uuid;
+
+static void createUUID(uuid *u)
+{
+   srand(time(NULL));
+   u->one = rand();
+   u->two = rand();
+   u->three = rand() & 0x0FFF | 0x4000;
+   u->four = rand() % 0x3FFF + 0x8000;
+   u->five[0] = rand();
+   u->five[1] = rand();
+}
+StringTableEntry Platform::createUUID( void )
+{
+   // Create UUID.
+   uuid id;
+   ::createUUID(&id);
+   
+   // Format UUID.
+   char uuidBuffer[128];
+   dSprintf( uuidBuffer, sizeof(uuidBuffer),
+             "%08x-%04x-%04x-%04x-%06x%06x",
+             id.one,
+             id.two,
+             id.three,
+             id.four,
+             id.five[0],
+             id.five[1]);
+   
+   return StringTable->insert(uuidBuffer);
+}
