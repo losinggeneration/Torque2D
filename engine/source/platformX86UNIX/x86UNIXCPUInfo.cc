@@ -69,7 +69,62 @@ void Processor::init()
 #if defined(TORQUE_SUPPORTS_NASM)
    detectX86CPUInfo(vendor, &processor, &properties);
 #else
-   //TODO --HL
+   //TODO Actually test this --HL
+   // totally untested...
+   asm(
+      //--------------------------------------
+      // is CPUID supported
+      "push   %%ebx\n"
+      "push   %%edx\n"
+      "push   %%ecx\n"
+      "pushf\n"
+      "pushf\n"
+      "pop    %%eax\n"
+      "mov    %%eax,%%ebx\n"
+      "xor    $0x200000,%%eax\n"
+      "push   %%eax\n"
+      "popf\n"
+      "pushf\n"
+      "pop    %%eax\n"
+      "cmp    %%ebx,%%eax\n"
+      "jz     EXIT\n"                // doesn't support CPUID instruction
+
+      //--------------------------------------
+      // Get Vendor Informaion using CPUID eax==0
+      "xor    %%eax,%%eax\n"
+      "cpuid\n"
+
+      "mov    %%ebx, (%1)\n"
+      "mov    %%ebx, 0x4(%1)\n"
+      "mov    %%ebx, 0x8(%1)\n"
+
+      // get Generic Extended CPUID info
+      "mov    $0x1,%%eax\n"
+      "cpuid\n"
+
+      "and    $0xff0,%%eax\n"
+      "mov    %%eax,%0\n"
+      "mov    %%edx,%0\n"
+
+      // Want to check for 3DNow(tm).  Need to see if extended cpuid functions present.
+      "mov    $0x80000000,%%eax\n"
+      "cpuid\n"
+      "cmp    $0x80000000,%%eax\n"
+      "jbe    EXIT\n"
+      "mov    $0x80000001,%%eax\n"
+      "cpuid\n"
+      "and    $0x80000000,%%edx\n"
+      "or     %%edx,%0\n"
+
+      "EXIT:\n"
+      "popf\n"
+      "pop    %%ecx\n"
+      "pop    %%edx\n"
+      "pop    %%ebx\n"
+      : "=r" (properties)
+      : "r" (vendor)
+      : "%eax", "%ecx", "%edx", "%ebx"
+   );
 #endif
    SetProcessorInfo(PlatformSystemInfo.processor, 
       vendor, processor, properties);
