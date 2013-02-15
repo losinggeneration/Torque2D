@@ -1,5 +1,6 @@
 project(Torque2D)
 cmake_minimum_required(VERSION 2.8)
+enable_language(ASM_NASM)
 
 set(TORQUE2D_SRCDIR ${CMAKE_SOURCE_DIR}/../../source)
 set(TORQUE2D_LIBDIR ${CMAKE_SOURCE_DIR}/../../lib)
@@ -259,11 +260,14 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/math/mathUtils.cc
 	${TORQUE2D_SRCDIR}/math/mBox.cc
 	${TORQUE2D_SRCDIR}/math/mConsoleFunctions.cc
+	${TORQUE2D_SRCDIR}/math/mMath_ASM.asm
 	${TORQUE2D_SRCDIR}/math/mMath_C.cc
 	${TORQUE2D_SRCDIR}/math/mMathAltivec.cc
 	${TORQUE2D_SRCDIR}/math/mMathAMD.cc
+	${TORQUE2D_SRCDIR}/math/mMathAMD_ASM.asm
 	${TORQUE2D_SRCDIR}/math/mMathFn.cc
 	${TORQUE2D_SRCDIR}/math/mMathSSE.cc
+	${TORQUE2D_SRCDIR}/math/mMathSSE_ASM.asm
 	${TORQUE2D_SRCDIR}/math/mMatrix.cc
 	${TORQUE2D_SRCDIR}/math/mPlaneTransformer.cc
 	${TORQUE2D_SRCDIR}/math/mQuadPatch.cc
@@ -277,6 +281,7 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/platform/platform.cc
 	${TORQUE2D_SRCDIR}/platform/platformAssert.cc
 	${TORQUE2D_SRCDIR}/platform/platformCPU.cc
+	${TORQUE2D_SRCDIR}/platform/platformCPUInfo.asm
 	${TORQUE2D_SRCDIR}/platform/platformFileIO.cc
 	${TORQUE2D_SRCDIR}/platform/platformFont.cc
 	${TORQUE2D_SRCDIR}/platform/platformMemory.cc
@@ -785,6 +790,56 @@ set(TORQUE2D_HEADERS
 #<ProjectReference Include="lpng.vcxproj">
 #<ProjectReference Include="zlib.vcxproj">
 
+add_library(ljpeg
+        ${TORQUE2D_LIBDIR}/ljpeg/jcapimin.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcapistd.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jccoefct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jccolor.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcdctmgr.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jchuff.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcinit.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcmainct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcmarker.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcomapi.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcparam.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcphuff.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcprepct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jcsample.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jctrans.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdapimin.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdapistd.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdatadst.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdatasrc.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdcoefct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdcolor.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jddctmgr.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdhuff.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdinput.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdmainct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdmarker.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdmaster.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdmerge.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdphuff.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdpostct.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdsample.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jdtrans.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jerror.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jfdctflt.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jfdctfst.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jfdctint.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jidctflt.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jidctfst.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jidctint.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jidctred.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jmemansi.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jmemmgr.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jmemname.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jmemnobs.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jquant1.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jquant2.c
+        ${TORQUE2D_LIBDIR}/ljpeg/jutils.c
+)
+
 if(WIN32)
 	list(APPEND TORQUE2D_SRCS
 		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32FileDialog.cc
@@ -822,8 +877,10 @@ if(WIN32)
 		${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
 	)
 
-	list(APPEND TORQUE2D_INC_DIRS
+	include_directories(
 		${TORQUE2D_LIBDIR}/openal/win32
+		${TORQUE2D_LIBDIR}/zlib
+		${TORQUE2D_LIBDIR}/lpng
 	)
 	list(APPEND TORQUE2D_LIBS
 		COMCTL32
@@ -864,7 +921,6 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXOGLVideo.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXOpenAL.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXProcessControl.cc
-# 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXRedbook.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXSemaphore.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXStrings.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXThread.cc
@@ -873,6 +929,8 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUtils.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXWindow.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/menus/popupMenuX86UNIX.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXFileDialog.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXMsgBox.cc
 	)
 
 	find_package(SDL REQUIRED)
@@ -880,12 +938,15 @@ elseif(UNIX)
 	find_package(JPEG REQUIRED)
 	find_package(PNG REQUIRED)
 	find_package(OpenAL REQUIRED)
-	find_package(GLU REQUIRED)
+	find_package(OpenGL REQUIRED)
+	if(NOT OPENGL_GLU_FOUND)
+		message(FATAL "OpenGL GLU not found")
+	endif()
 	find_package(X11)
 	if(NOT X11_Xft_FOUND)
 		message(FATAL "X11 Xft not found")
 	endif()
-	list(APPEND TORQUE2D_INC_DIRS
+	include_directories(
 		${TORQUE2D_LIBDIR}/openal/LINUX
 		${FREETYPE_INCLUDE_DIRS}
 		${SDL_INCLUDE_DIR}
@@ -893,7 +954,7 @@ elseif(UNIX)
 		${PNG_INCLUDE_DIR}
 		${OPENAL_INCLUDE_DIR}
 		${X11_Xft_INCLUDE_PATH}
-		${GLU_INCLUDE_PATH}
+		${OPENGL_INCLUDE_DIR}
 	)
 	list(APPEND TORQUE2D_LIBS
 		${FREETYPE_LIBRARIES}
@@ -904,22 +965,23 @@ elseif(UNIX)
 		${X11_Xft_LIB}
 		${X11_LIBRARIES} # TODO use only libraries needed
 		${CMAKE_DL_LIBS}
-		${GLU_LIBRARY}
+		${OPENGL_glu_LIBRARY}
 	)
+	# Required for nasm with math/*_ASM.asm
+	list(APPEND TORQUE2D_PROPERTIES COMPILE_FLAGS -DLINUX)
 endif()
 
+
+include_directories(
+	${TORQUE2D_SRCDIR}
+	${TORQUE2D_LIBDIR}/ljpeg
+)
 set(DEBUG 1)
 
 if(DEBUG)
 	include_directories(
-		${TORQUE2D_LIBDIR}/zlib
-		${TORQUE2D_LIBDIR}/lpng
-		${TORQUE2D_LIBDIR}/ljpeg
-# 		${TORQUE2D_LIBDIR}/openal/win32
-		${TORQUE2D_SRCDIR}
 		${TORQUE2D_SRCDIR}/testing/googleTest
 		${TORQUE2D_SRCDIR}/testing/googleTest/include
-		${TORQUE2D_INC_DIRS}
 	)
 	add_definitions(
 		-DTORQUE_DEBUG
@@ -931,17 +993,19 @@ if(DEBUG)
 	set (CMAKE_CXX_FLAGS "-m32 -fpermissive -w")
 	target_link_libraries(Torque2D_DEBUG
 		pthread
+		ljpeg
 		${TORQUE2D_LIBS}
 	)
+	if(TORQUE2D_PROPERTIES)
+		set_target_properties(Torque2D_DEBUG PROPERTIES
+			${TORQUE2D_PROPERTIES}
+		)
+	endif()
 	#../../Lib/unicode;../../lib/MSPlatformSDK/Lib;
 endif()
 
 if(RELEASE)
-	include_directories(../../Lib/zlib
-		${TORQUE2D_LIBDIR}/lpng
-		${TORQUE2D_LIBDIR}/ljpeg
-		${TORQUE2D_LIBDIR}/openal/win32
-		../../Source
+	include_directories(
 		${TORQUE2D_SRCDIR}/testing/googleTest
 		${TORQUE2D_SRCDIR}/testing/googleTest/include
 	)
@@ -968,12 +1032,6 @@ if(RELEASE)
 endif()
 
 if(SHIPPING)
-	include_directories(../../Lib/zlib
-		${TORQUE2D_LIBDIR}/lpng
-		${TORQUE2D_LIBDIR}/ljpeg
-		${TORQUE2D_LIBDIR}/openal/win32
-		../../Source
-	)
 	add_definitions(TORQUE_SHIPPING
 		UNICODE
 		_CRT_SECURE_NO_DEPRECATE

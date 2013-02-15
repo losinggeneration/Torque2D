@@ -1350,3 +1350,9 @@ void Platform::restartInstance()
         exit(0);
 }
 
+//-----------------------------------------------------------------------------
+
+StringTableEntry Platform::osGetTemporaryDirectory()
+{
+   //TODO --HL
+}

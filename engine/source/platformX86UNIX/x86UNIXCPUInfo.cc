@@ -34,20 +34,22 @@ extern void PlatformBlitInit();
 extern void SetProcessorInfo(TorqueSystemInfo::Processor& pInfo, 
    char* vendor, U32 processor, U32 properties); // platform/platformCPU.cc
 
+#if defined(TORQUE_SUPPORTS_NASM)
 // asm cpu detection routine from platform code
-extern "C" 
+extern "C"
 {
-void detectX86CPUInfo(char *vendor, U32 *processor, U32 *properties);
+   void detectX86CPUInfo(char *vendor, U32 *processor, U32 *properties);
 }
+#endif
 
 /* used in the asm */
 static U32 time[2];
-static U32 clockticks = 0;
+U32 clockticks = 0;
 static char vendor[13] = {0,};
 static U32 properties = 0;
 static U32 processor  = 0;
-static U32 timeHi = 0;
-static U32 timeLo = 0;
+U32 timeHi = 0;
+U32 timeLo = 0;
 
 void Processor::init()
 {
@@ -64,7 +66,11 @@ void Processor::init()
    clockticks = properties = processor = time[0] = 0;
    dStrcpy(vendor, "");
 
+#if defined(TORQUE_SUPPORTS_NASM)
    detectX86CPUInfo(vendor, &processor, &properties);
+#else
+   //TODO --HL
+#endif
    SetProcessorInfo(PlatformSystemInfo.processor, 
       vendor, processor, properties);
 

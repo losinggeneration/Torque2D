@@ -74,6 +74,7 @@ class XClipboard
 
 // Static class variables:
 InputManager*  Input::smManager;
+CursorManager* Input::smCursorManager = 0; //*** DAW: Added
 
 // smActive is not maintained under unix.  Use Input::isActive()
 // instead
@@ -644,4 +645,21 @@ void Input::refreshCursor()
 	CursorManager* cm = getCursorManager();
 	if(cm)
 		cm->refreshCursor();
+}
+
+//------------------------------------------------------------------------------
+
+U32 Input::getDoubleClickTime()
+{
+	// TODO --HL
+}
+
+S32 Input::getDoubleClickWidth()
+{
+	// TODO --HL
+}
+
+S32 Input::getDoubleClickHeight()
+{
+	// TODO --HL
 }

@@ -605,6 +605,11 @@ void Platform::minimizeWindow()
 #endif
 }
 
+void Platform::restoreWindow()
+{
+	//TODO --HL
+}
+
 //------------------------------------------------------------------------------
 void Platform::process()
 {
@@ -629,11 +634,6 @@ void Platform::process()
       // process input events
       PROFILE_START(XUX_InputProcess);
       Input::process();
-      PROFILE_END();
-
-      // poll redbook state
-      PROFILE_START(XUX_PollRedbookDevices);
-      PollRedbookDevices();
       PROFILE_END();
 
       // if we're not the foreground window, sleep for 1 ms
@@ -734,10 +734,6 @@ void Platform::init()
 
       // initialize input
       Input::init();
-
-      // initialize redbook devices
-      if (x86UNIXState->getCDAudioEnabled())
-         InstallRedBookDevices();
 
       Con::printf( "Video Init:" );
 
