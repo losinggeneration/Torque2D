@@ -29,41 +29,45 @@
 #include <SDL/SDL_thread.h>
 
 struct PlatformSemaphore {
-	SDL_sem *sem;
+   SDL_sem *semaphore;
 
-	PlatformSemaphore() {
-		sem = NULL;
-	}
+   PlatformSemaphore(S32 initialCount)
+   {
+      semaphore = SDL_CreateSemaphore(initialCount);
+      AssertFatal(semaphore, "Semaphore::createSemaphore - Failed.");
+   }
+
+   ~PlatformSemaphore()
+   {
+      SDL_DestroySemaphore(semaphore);
+      semaphore = NULL;
+   }
 };
 
 Semaphore::Semaphore(S32 initialCount)
 {
-  SDL_sem *semaphore = mData->sem;
-  semaphore = SDL_CreateSemaphore(initialCount);
-  AssertFatal(semaphore, "Semaphore::createSemaphore - Failed.");
+   mData = new PlatformSemaphore(initialCount);
 }
 
 Semaphore::~Semaphore()
 {
-  AssertFatal(mData->sem, "Semaphore::destroySemaphore - Invalid semaphore");
-  SDL_DestroySemaphore(mData->sem);
-  mData->sem = NULL;
+   AssertFatal(mData && mData->semaphore, "Semaphore::destroySemaphore: invalid semaphore");
+   delete mData;
 }
 
 // TODO timeoutMS -- HL
 bool Semaphore::acquire(bool block, S32 timeoutMS)
 {
-  SDL_sem *semaphore = mData->sem;
-  AssertFatal(semaphore, "Semaphore::acquireSemaphore - Invalid semaphore");
+  AssertFatal(mData->semaphore, "Semaphore::acquireSemaphore - Invalid semaphore");
   if (block)
     {
-      if (SDL_SemWait((SDL_sem *)semaphore) < 0)
+       if (SDL_SemWait(mData->semaphore) < 0)
 	AssertFatal(false, "Semaphore::acquieSemaphore - Wait failed.");
       return (true);
     }
   else
     {
-      int res = SDL_SemTryWait((SDL_sem *)semaphore);
+       int res = SDL_SemTryWait(mData->semaphore);
       if (res < 0)
 	AssertFatal(false, "Semaphore::acquireSemaphore - Wait failed.");
       return (res == 0);
@@ -72,6 +76,6 @@ bool Semaphore::acquire(bool block, S32 timeoutMS)
 
 void Semaphore::release()
 {
-  AssertFatal(mData->sem, "Semaphore::releaseSemaphore - Invalid semaphore");
-  SDL_SemPost(mData->sem);
+   AssertFatal(mData->semaphore, "Semaphore::releaseSemaphore - Invalid semaphore");
+   SDL_SemPost(mData->semaphore);
 }

@@ -54,7 +54,9 @@ struct PlatformMutexData
 
 Mutex::Mutex()
 {
-   pthread_mutex_t *mutex = mData->mMutex;
+   mData = new PlatformMutexData;
+
+   pthread_mutex_t *mutex;
    pthread_mutexattr_t attr;
 
    pthread_mutexattr_init(&attr);
@@ -62,6 +64,7 @@ Mutex::Mutex()
    
    mutex = new pthread_mutex_t;
    pthread_mutex_init(mutex, &attr);
+   mData->mMutex = mutex;
 }
 
 Mutex::~Mutex()
