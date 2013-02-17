@@ -23,8 +23,8 @@
 
 
 #include "math/mMath.h"
-#include "dgl/dgl.h"
-#include "dgl/gBitmap.h"
+#include "graphics/dgl.h"
+#include "graphics/gBitmap.h"
 
 //--------------------------------------------------------------------------
 void bitmapExtrude5551_asm(const void *srcMip, void *mip, U32 height, U32 width)
@@ -57,10 +57,13 @@ void PlatformBlitInit()
    bitmapExtrude5551 = bitmapExtrude5551_asm;
    bitmapExtrudeRGB  = bitmapExtrudeRGB_c;
 
+   // TODO Is this even needed anymore? -- HL
+#if 0
    if (Platform::SystemInfo.processor.properties & CPU_PROP_MMX)
    {
       // JMQ: haven't bothered porting mmx bitmap funcs because they don't
       // seem to offer a big performance boost right now.
    }
+#endif
 }
 

@@ -22,7 +22,7 @@
 
 
 
-#include "platform/platformThread.h"
+#include "platform/threads/thread.h"
 #include "platformX86UNIX/platformX86UNIX.h"
 #include "platform/platformSemaphore.h"
 
@@ -34,7 +34,7 @@
 struct x86UNIXThreadData
 {
   ThreadRunFunction       mRunFunc;
-  S32                     mRunArg;
+  void                    *mRunArg;
   Thread *                mThread;
   void *                  mSemaphore;
   SDL_Thread              *mTheThread;
@@ -49,7 +49,8 @@ struct x86UNIXThreadData
 };
 
 //--------------------------------------------------------------------------
-Thread::Thread(ThreadRunFunction func, S32 arg, bool start_thread)
+// TODO autodelete -- HL
+Thread::Thread(ThreadRunFunction func, void *arg, bool start_thread, bool autodelete)
 {
   x86UNIXThreadData * threadData = new x86UNIXThreadData();
   threadData->mRunFunc   = func;
@@ -109,7 +110,7 @@ bool Thread::join()
   return (Semaphore::acquireSemaphore(threadData->mSemaphore, true));
 }
 
-void Thread::run(S32 arg)
+void Thread::run(void *arg)
 {
   x86UNIXThreadData * threadData = reinterpret_cast<x86UNIXThreadData*>(mData);
   if(threadData->mRunFunc)
@@ -129,7 +130,7 @@ bool Thread::isAlive()
   return false;
 }
 
-U32 Thread::getCurrentThreadId()
+U32 Thread::getId()
 {
    return (U32)SDL_ThreadID();
 }

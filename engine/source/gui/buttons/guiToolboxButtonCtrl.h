@@ -27,7 +27,7 @@
 #include "gui/buttons/guiButtonCtrl.h"
 #endif
 #ifndef _TEXTURE_MANAGER_H_
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #endif
 
 class GuiToolboxButtonCtrl : public GuiButtonCtrl

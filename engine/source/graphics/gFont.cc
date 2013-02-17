@@ -29,7 +29,7 @@
 #include "graphics/gBitmap.h"
 #include "io/fileStream.h"
 #include "string/findMatch.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "graphics/gFont.h"
 #include "memory/safeDelete.h"
 #include "memory/frameAllocator.h"

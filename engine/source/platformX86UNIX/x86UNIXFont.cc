@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 
-#include "dgl/gFont.h"
-#include "dgl/gBitmap.h"
+#include "graphics/gFont.h"
+#include "graphics/gBitmap.h"
 #include "math/mRect.h"
 #include "console/console.h"
-#include "core/unicode.h"
+#include "string/unicode.h"
 #include "platformX86UNIX/platformX86UNIX.h"
 #include "platformX86UNIX/x86UNIXFont.h"
 
@@ -82,7 +82,8 @@ XftFont *loadFont(const char *name, S32 size, Display *display)
   return fontInfo;
 }
 
-
+// TODO --HL
+#if 0
 GOldFont* createFont(const char *name, dsize_t size, U32 charset)
 {
   Display *display = XOpenDisplay(getenv("DISPLAY"));
@@ -183,7 +184,7 @@ GOldFont* createFont(const char *name, dsize_t size, U32 charset)
   XCloseDisplay(display);
   return retFont;
 }
-
+#endif
 
 // XA: New class for the unix unicode font
 PlatformFont *createPlatformFont(const char *name, U32 size, U32 charset /* = TGE_ANSI_CHARSET */)

@@ -53,11 +53,14 @@ S32 dMemcmp(const void *ptr1, const void *ptr2, unsigned len)
 #undef new
 #endif
 
+// TODO Fix this -- HL
+#if 0
 //--------------------------------------
 void* FN_CDECL operator new(dsize_t, void* ptr)
 {
    return (ptr);
 }   
+#endif
 
 void* dRealMalloc(dsize_t s)
 {

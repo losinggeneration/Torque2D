@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #include "math/mPoint.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "graphics/dgl.h"
 #include "graphics/color.h"
 #include "math/mPoint.h"

@@ -29,14 +29,22 @@
 extern "C" {
 #endif
 
+//put this here so the GUI can get to it
+//<--%PUAP% -Mat add #defines for min window/resolution size
+#define MIN_RESOLUTION_X			320
+#define MIN_RESOLUTION_Y			320//for 230 x 480 or 480 x 320
+#define MIN_RESOLUTION_BIT_DEPTH	32
+#define MIN_RESOLUTION_XY_STRING	"320 320"
+//%PUAP%-->
+
 #define GLAPI extern
 #define GLAPIENTRY
 
 #include "platformX86UNIX/gl_types.h"
 
 #define GL_FUNCTION(fn_return,fn_name,fn_args,fn_value) extern fn_return (*fn_name)fn_args; 
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
 #undef GL_FUNCTION
 
 // GLU functions are linked at compile time, except in the dedicated server build
@@ -45,7 +53,7 @@ extern "C" {
 #else
 #define GL_FUNCTION(fn_return,fn_name,fn_args,fn_value) extern fn_return (*fn_name)fn_args; 
 #endif
-#include "platform/GLUFunc.h"
+#include "platform/gluFunc.h"
 #undef GL_FUNCTION
 
 namespace GLLoader

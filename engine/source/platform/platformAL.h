@@ -34,6 +34,10 @@
 #elif defined(TORQUE_OS_IOS)
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
+#elif defined(TORQUE_OS_LINUX)
+#include <AL/al.h>
+#include <AL/alc.h>
+#include "platform/eaxtypes.h"
 #else
 // declare externs of the AL fns here.
 #include "al/altypes.h"

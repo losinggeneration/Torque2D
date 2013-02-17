@@ -50,12 +50,13 @@
  #endif
  
  #include "platformX86UNIX/platformX86UNIX.h"
- #include "core/fileio.h"
- #include "core/tVector.h"
- #include "core/stringTable.h"
+ #include "platform/platformFileIO.h"
+ #include "collection/vector.h"
+ #include "string/stringTable.h"
  #include "console/console.h"
- #include "core/resManager.h"
- #include "platform/gameInterface.h" 
+ #include "io/resource/resourceManager.h"
+ #include "game/gameInterface.h"
+ #include "string/unicode.h"
 
  #if defined(__FreeBSD__)
     #include <sys/types.h>
@@ -409,6 +410,149 @@ bool dPathCopy(const char *fromName, const char *toName, bool nooverwrite)
  bool dFileTouch(const char * name)
  {
     return ModifyFile(name, TOUCH);
+ }
+
+ //-----------------------------------------------------------------------------
+ bool Platform::fileDelete(const char * name)
+ {
+    if(!name || (dStrlen(name) >= MAX_PATH))
+       return(false);
+   if(Platform::isFile(name))
+      return(dFileDelete(name) == 0);
+   else
+      return dFileDelete(name) == 0;
+ }
+
+ bool Platform::fileRename(const char *oldName, const char *newName)
+ {
+    if(oldName == NULL || newName == NULL || dStrlen(oldName) >= MAX_PATH || dStrlen(newName) > MAX_PATH)
+       return false;
+    
+    char oldf[MAX_PATH], newf[MAX_PATH];
+    dStrcpy(oldf, oldName);
+    dStrcpy(newf, newName);
+    ForwardSlash(oldf);
+    ForwardSlash(newf);
+    
+    return rename(oldf, newf) == 0;
+ }
+ 
+ bool Platform::fileTouch(const char * name)
+ {
+    // change the modified time to the current time (0byte WriteFile fails!)
+    return(utime(name, 0) != -1);
+ };
+
+ bool Platform::pathCopy(const char *fromName, const char *toName, bool nooverwrite)
+ {
+    if(!fromName || (dStrlen(fromName) >= MAX_PATH) ||
+       !toName || (dStrlen(toName) >= MAX_PATH))
+       return(false);
+    
+    static char filebuf[2048];
+    dStrcpy(filebuf, fromName);
+    ForwardSlash(filebuf);
+    fromName = filebuf;
+    
+    static char filebuf2[2048];
+    dStrcpy(filebuf2, toName);
+    ForwardSlash(filebuf2);
+    toName = filebuf2;
+    
+    // Copy File
+    if (Platform::isFile(fromName))
+    {
+       #ifdef UNICODE
+       UTF16 f[1024], t[1024];
+       convertUTF8toUTF16((UTF8 *)fromName, f, sizeof(f));
+       convertUTF8toUTF16((UTF8 *)toName, t, sizeof(t));
+       #else
+       char *f = (char*)fromName;
+       char *t = (char*)toName;
+       #endif
+       // TODO cp -- HL
+#if 0
+       if(::CopyFile( f, t, nooverwrite))
+       {
+          return true;
+       }
+#endif
+       
+       return false;
+    }
+    
+    // Copy Path
+    else if (Platform::isDirectory(fromName))
+    {
+       // If the destination path exists and we don't want to overwrite, return.
+       if ((Platform::isDirectory(toName) || Platform::isFile(toName)) && nooverwrite)
+          return false;
+       
+       Vector<StringTableEntry> directoryInfo;
+       Platform::dumpDirectories(fromName, directoryInfo, -1);
+       
+       ResourceManager->initExcludedDirectories();
+       
+       Vector<Platform::FileInfo> fileInfo;
+       Platform::dumpPath(fromName, fileInfo);
+       
+       Platform::clearExcludedDirectories();
+       
+       // Create all the directories.
+       for (S32 i = 0; i < directoryInfo.size(); i++)
+       {
+          const char* from = directoryInfo[i];
+          
+          char to[1024];
+          Platform::makeFullPathName(from + dStrlen(fromName) + (dStricmp(from, fromName) ? 1 : 0), to, sizeof(to), toName);
+          if(*(to + dStrlen(to) - 1) != '/')
+             dStrcat(to, "/");
+          ForwardSlash(to);
+          
+          if (!Platform::createPath(to))
+          {
+             // New directory should be deleted here.
+             return false;
+          }
+       }
+       
+       for (S32 i = 0; i < fileInfo.size(); i++)
+       {
+          char from[1024];
+          dSprintf(from, 1024, "%s/%s", fileInfo[i].pFullPath, fileInfo[i].pFileName);
+          
+          char to[1024];
+          Platform::makeFullPathName(fileInfo[i].pFullPath + dStrlen(fromName) + (dStricmp(fileInfo[i].pFullPath, fromName) ? 1 : 0), to, sizeof(to), toName);
+          dStrcat(to, "/");
+          dStrcat(to, fileInfo[i].pFileName);
+          
+          ForwardSlash(from);
+          ForwardSlash(to);
+          
+          #ifdef UNICODE
+          UTF16 f[1024], t[1024];
+          convertUTF8toUTF16((UTF8 *)from, f, sizeof(f));
+          convertUTF8toUTF16((UTF8 *)to, t, sizeof(t));
+          #else
+          char *f = (char*)from;
+          char *t = (char*)to;
+          #endif
+
+          // TODO cp -- HL
+#if 0
+          if (!::CopyFile(f, t, nooverwrite))
+          {
+             // New directory should be deleted here.
+             return false;
+          }
+#endif
+          
+       }
+       
+       return true;
+    }
+    
+    return false;
  }
  
  //-----------------------------------------------------------------------------
@@ -897,7 +1041,24 @@ bool dPathCopy(const char *fromName, const char *toName, bool nooverwrite)
     MungePath(mungedPath, MaxPath, path, cwd);
     return RecurseDumpPath(mungedPath, path, pattern, fileVector, depth);
  }
+
+ //-----------------------------------------------------------------------------
+ StringTableEntry Platform::getCurrentDirectory()
+ {
+    char cwd_buf[2048];
+    getcwd(cwd_buf, 2047);
+    return StringTable->insert(cwd_buf);
+ }
+
+ bool Platform::setCurrentDirectory(StringTableEntry newDir)
+ {
+    char cwd_buf[2048];
+    dStrncpy(cwd_buf, newDir, sizeof(cwd_buf)-1);
+    cwd_buf[sizeof(cwd_buf)-1] = 0;
+    return chdir(cwd_buf) == 0;
+ }
  
+
  //-----------------------------------------------------------------------------
  bool Platform::isFile(const char *pFilePath)
  {
@@ -1160,6 +1321,11 @@ StringTableEntry Platform::getExecutableName()
 
 }
 
+StringTableEntry Platform::getExecutablePath()
+{
+   // TODO --HL
+}
+
 //-----------------------------------------------------------------------------
 void Platform::restartInstance()
 {
@@ -1184,3 +1350,9 @@ void Platform::restartInstance()
         exit(0);
 }
 
+//-----------------------------------------------------------------------------
+
+StringTableEntry Platform::osGetTemporaryDirectory()
+{
+   //TODO --HL
+}

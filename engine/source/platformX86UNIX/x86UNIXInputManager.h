@@ -25,7 +25,7 @@
 #ifndef _X86UNIXINPUTMANAGER_H_
 #define _X86UNIXINPUTMANAGER_H_
 
-#include "core/tVector.h"
+#include "collection/vector.h"
 #include "platform/platformInput.h"
 #include "platformX86UNIX/platformX86UNIX.h"
 

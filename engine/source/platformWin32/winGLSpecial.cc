@@ -39,10 +39,10 @@ static bool perfEnabled = false;
 #define WGLD3D_FUNCTION(fn_type, fn_name, fn_args, fn_body) extern fn_type (APIENTRY * dlldwgl##fn_name)fn_args;
 
 //includes...
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
-#include "platform/GLUFunc.h"
-#include "platformWin32/GLWinFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
+#include "platform/gluFunc.h"
+#include "platformWin32/glWinFunc.h"
 
 //undefs...
 #undef GL_FUNCTION

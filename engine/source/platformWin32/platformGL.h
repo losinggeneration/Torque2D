@@ -46,9 +46,9 @@ extern "C" {
 #include "platformWin32/gl_types.h"
 
 #define GL_FUNCTION(fn_type,fn_name,fn_args, fn_value) extern fn_type (__stdcall *fn_name)fn_args;
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
-#include "platform/GLUFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
+#include "platform/glUFunc.h"
 #undef GL_FUNCTION
 
 /* EXT_vertex_buffer */

@@ -30,7 +30,7 @@
 #include "audio/audioStreamSourceFactory.h"
 
 #ifdef TORQUE_OS_IOS
-#include "platformiOS/SoundEngine.h"
+#include "platformiOS/soundEngine.h"
 #endif
 
 

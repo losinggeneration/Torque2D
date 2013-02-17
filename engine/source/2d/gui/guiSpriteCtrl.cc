@@ -37,7 +37,7 @@
 #endif
 
 #ifndef _RENDER_PROXY_H_
-#include "2d/core/RenderProxy.h"
+#include "2d/core/renderProxy.h"
 #endif
 
 #include "guiSpriteCtrl_ScriptBindings.h"
