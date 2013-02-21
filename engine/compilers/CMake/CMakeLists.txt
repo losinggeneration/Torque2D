@@ -27,6 +27,12 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/2d/gui/guiSceneObjectCtrl.cc
 	${TORQUE2D_SRCDIR}/2d/gui/guiSpriteCtrl.cc
 	${TORQUE2D_SRCDIR}/2d/gui/sceneWindow.cc
+	${TORQUE2D_SRCDIR}/2d/scene/contactFilter.cc
+	${TORQUE2D_SRCDIR}/2d/scene/debugDraw.cc
+	${TORQUE2D_SRCDIR}/2d/scene/scene.cc
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderFactories.cpp
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderQueue.cpp
+	${TORQUE2D_SRCDIR}/2d/scene/worldQuery.cc
 	${TORQUE2D_SRCDIR}/2d/sceneobject/compositeSprite.cc
 	${TORQUE2D_SRCDIR}/2d/sceneobject/imageFont.cc
 	${TORQUE2D_SRCDIR}/2d/sceneobject/particlePlayer.cc
@@ -35,23 +41,10 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/2d/sceneobject/shapeVector.cc
 	${TORQUE2D_SRCDIR}/2d/sceneobject/sprite.cc
 	${TORQUE2D_SRCDIR}/2d/sceneobject/trigger.cc
-	${TORQUE2D_SRCDIR}/2d/scene/contactFilter.cc
-	${TORQUE2D_SRCDIR}/2d/scene/debugDraw.cc
-	${TORQUE2D_SRCDIR}/2d/scene/scene.cc
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderFactories.cpp
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderQueue.cpp
-	${TORQUE2D_SRCDIR}/2d/scene/worldQuery.cc
-	${TORQUE2D_SRCDIR}/algorithm/crc.cc
-	${TORQUE2D_SRCDIR}/algorithm/hashFunction.cc
-	${TORQUE2D_SRCDIR}/assets/assetBase.cc
-	${TORQUE2D_SRCDIR}/assets/assetFieldTypes.cc
-	${TORQUE2D_SRCDIR}/assets/assetManager.cc
-	${TORQUE2D_SRCDIR}/assets/assetQuery.cc
-	${TORQUE2D_SRCDIR}/assets/assetSnapshot.cc
-	${TORQUE2D_SRCDIR}/assets/assetTagsManifest.cc
-	${TORQUE2D_SRCDIR}/assets/declaredAssets.cc
-	${TORQUE2D_SRCDIR}/assets/referencedAssets.cc
-	${TORQUE2D_SRCDIR}/audio/audioAsset.cc
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2ChainShape.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2CircleShape.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2EdgeShape.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2PolygonShape.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2BroadPhase.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2CollideCircle.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2CollideEdge.cpp
@@ -60,22 +53,12 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2Distance.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2DynamicTree.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Collision/b2TimeOfImpact.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2ChainShape.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2CircleShape.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2EdgeShape.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2PolygonShape.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2BlockAllocator.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2Draw.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2Math.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2Settings.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2StackAllocator.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Common/b2Timer.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Body.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2ContactManager.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Fixture.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Island.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2World.cpp
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2WorldCallbacks.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2CircleContact.cpp
@@ -97,17 +80,59 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2RopeJoint.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WeldJoint.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WheelJoint.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Body.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2ContactManager.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Fixture.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Island.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2World.cpp
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2WorldCallbacks.cpp
 	${TORQUE2D_SRCDIR}/Box2D/Rope/b2Rope.cpp
+	${TORQUE2D_SRCDIR}/algorithm/crc.cc
+	${TORQUE2D_SRCDIR}/algorithm/hashFunction.cc
+	${TORQUE2D_SRCDIR}/assets/assetBase.cc
+	${TORQUE2D_SRCDIR}/assets/assetFieldTypes.cc
+	${TORQUE2D_SRCDIR}/assets/assetManager.cc
+	${TORQUE2D_SRCDIR}/assets/assetQuery.cc
+	${TORQUE2D_SRCDIR}/assets/assetSnapshot.cc
+	${TORQUE2D_SRCDIR}/assets/assetTagsManifest.cc
+	${TORQUE2D_SRCDIR}/assets/declaredAssets.cc
+	${TORQUE2D_SRCDIR}/assets/referencedAssets.cc
+	${TORQUE2D_SRCDIR}/audio/audio.cc
+	${TORQUE2D_SRCDIR}/audio/audioAsset.cc
+	${TORQUE2D_SRCDIR}/audio/audioBuffer.cc
+	${TORQUE2D_SRCDIR}/audio/audioDataBlock.cc
+	${TORQUE2D_SRCDIR}/audio/audioFunctions.cc
+	${TORQUE2D_SRCDIR}/audio/audioStreamSourceFactory.cc
+	${TORQUE2D_SRCDIR}/audio/wavStreamSource.cc
 	${TORQUE2D_SRCDIR}/collection/bitTables.cc
 	${TORQUE2D_SRCDIR}/collection/hashTable.cc
 	${TORQUE2D_SRCDIR}/collection/nameTags.cpp
 	${TORQUE2D_SRCDIR}/collection/undo.cc
 	${TORQUE2D_SRCDIR}/collection/vector.cc
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponent.cpp
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorInstance.cpp
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorTemplate.cpp
+	${TORQUE2D_SRCDIR}/component/dynamicConsoleMethodComponent.cpp
+	${TORQUE2D_SRCDIR}/component/simComponent.cpp
+	${TORQUE2D_SRCDIR}/console/astAlloc.cc
+	${TORQUE2D_SRCDIR}/console/astNodes.cc
+	${TORQUE2D_SRCDIR}/console/cmdgram.cc
+	${TORQUE2D_SRCDIR}/console/cmdscan.cc
+	${TORQUE2D_SRCDIR}/console/codeBlock.cc
+	${TORQUE2D_SRCDIR}/console/compiledEval.cc
+	${TORQUE2D_SRCDIR}/console/compiler.cc
+	${TORQUE2D_SRCDIR}/console/console.cc
 	${TORQUE2D_SRCDIR}/console/consoleBaseType.cc
 	${TORQUE2D_SRCDIR}/console/consoleDictionary.cc
+	${TORQUE2D_SRCDIR}/console/consoleDoc.cc
 	${TORQUE2D_SRCDIR}/console/consoleExprEvalState.cc
+	${TORQUE2D_SRCDIR}/console/consoleFunctions.cc
+	${TORQUE2D_SRCDIR}/console/consoleLogger.cc
 	${TORQUE2D_SRCDIR}/console/consoleNamespace.cc
+	${TORQUE2D_SRCDIR}/console/consoleObject.cc
+	${TORQUE2D_SRCDIR}/console/consoleParser.cc
 	${TORQUE2D_SRCDIR}/console/consoleTypeValidators.cc
+	${TORQUE2D_SRCDIR}/console/consoleTypes.cc
 	${TORQUE2D_SRCDIR}/debug/profiler.cc
 	${TORQUE2D_SRCDIR}/debug/remote/remoteDebugger1.cc
 	${TORQUE2D_SRCDIR}/debug/remote/remoteDebuggerBase.cc
@@ -115,7 +140,9 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/debug/telnetDebugger.cc
 	${TORQUE2D_SRCDIR}/delegates/delegateSignal.cpp
 	${TORQUE2D_SRCDIR}/game/defaultGame.cc
+	${TORQUE2D_SRCDIR}/game/gameConnection.cc
 	${TORQUE2D_SRCDIR}/game/gameInterface.cc
+	${TORQUE2D_SRCDIR}/game/version.cc
 	${TORQUE2D_SRCDIR}/graphics/bitmapBmp.cc
 	${TORQUE2D_SRCDIR}/graphics/bitmapJpeg.cc
 	${TORQUE2D_SRCDIR}/graphics/bitmapPng.cc
@@ -131,6 +158,36 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/graphics/textureDictionary.cc
 	${TORQUE2D_SRCDIR}/graphics/textureHandle.cc
 	${TORQUE2D_SRCDIR}/graphics/textureManager.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiBitmapButtonCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiBorderButton.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonBaseCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiCheckBoxCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiIconButtonCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiRadioCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/buttons/guiToolboxButtonCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiAutoScrollCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiCtrlArrayCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiDragAndDropCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiDynamicCtrlArrayCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiFormCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiFrameCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiPaneCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiRolloutCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiScrollCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiStackCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiTabBookCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/containers/guiWindowCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiControlListPopup.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiDebugger.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiEditCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiFilterCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiGraphCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiImageList.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiInspector.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiInspectorTypes.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiMenuBar.cc
+	${TORQUE2D_SRCDIR}/gui/editor/guiSeparatorCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiArrayCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiBackgroundCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiBitmapBorderCtrl.cc
@@ -146,9 +203,9 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/gui/guiFadeinBitmapCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiInputCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiListBoxCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/guiMessageVectorCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiMLTextCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiMLTextEditCtrl.cc
+	${TORQUE2D_SRCDIR}/gui/guiMessageVectorCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiMouseEventCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiPopUpCtrl.cc
 	${TORQUE2D_SRCDIR}/gui/guiPopUpCtrlEx.cc
@@ -190,6 +247,25 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/io/zip/zipObject.cc
 	${TORQUE2D_SRCDIR}/io/zip/zipSubStream.cc
 	${TORQUE2D_SRCDIR}/io/zip/zipTempStream.cc
+	${TORQUE2D_SRCDIR}/math/mBox.cc
+	${TORQUE2D_SRCDIR}/math/mConsoleFunctions.cc
+	${TORQUE2D_SRCDIR}/math/mMathAMD.cc
+	${TORQUE2D_SRCDIR}/math/mMathAMD_ASM.asm
+	${TORQUE2D_SRCDIR}/math/mMathAltivec.cc
+	${TORQUE2D_SRCDIR}/math/mMathFn.cc
+	${TORQUE2D_SRCDIR}/math/mMathSSE.cc
+	${TORQUE2D_SRCDIR}/math/mMathSSE_ASM.asm
+	${TORQUE2D_SRCDIR}/math/mMath_ASM.asm
+	${TORQUE2D_SRCDIR}/math/mMath_C.cc
+	${TORQUE2D_SRCDIR}/math/mMatrix.cc
+	${TORQUE2D_SRCDIR}/math/mPlaneTransformer.cc
+	${TORQUE2D_SRCDIR}/math/mQuadPatch.cc
+	${TORQUE2D_SRCDIR}/math/mQuat.cc
+	${TORQUE2D_SRCDIR}/math/mRandom.cc
+	${TORQUE2D_SRCDIR}/math/mSolver.cc
+	${TORQUE2D_SRCDIR}/math/mSplinePatch.cc
+	${TORQUE2D_SRCDIR}/math/mathTypes.cc
+	${TORQUE2D_SRCDIR}/math/mathUtils.cc
 	${TORQUE2D_SRCDIR}/math/rectClipper.cpp
 	${TORQUE2D_SRCDIR}/memory/dataChunker.cc
 	${TORQUE2D_SRCDIR}/memory/frameAllocator.cc
@@ -217,6 +293,7 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/network/serverQuery.cc
 	${TORQUE2D_SRCDIR}/network/tcpObject.cc
 	${TORQUE2D_SRCDIR}/network/telnetConsole.cc
+	${TORQUE2D_SRCDIR}/persistence/simXMLDocument.cpp
 	${TORQUE2D_SRCDIR}/persistence/taml/taml.cc
 	${TORQUE2D_SRCDIR}/persistence/taml/tamlBinaryReader.cc
 	${TORQUE2D_SRCDIR}/persistence/taml/tamlBinaryWriter.cc
@@ -229,55 +306,10 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/persistence/tinyXML/tinyxml.cpp
 	${TORQUE2D_SRCDIR}/persistence/tinyXML/tinyxmlerror.cpp
 	${TORQUE2D_SRCDIR}/persistence/tinyXML/tinyxmlparser.cpp
-	${TORQUE2D_SRCDIR}/audio/audio.cc
-	${TORQUE2D_SRCDIR}/audio/audioBuffer.cc
-	${TORQUE2D_SRCDIR}/audio/audioDataBlock.cc
-	${TORQUE2D_SRCDIR}/audio/audioFunctions.cc
-	${TORQUE2D_SRCDIR}/audio/audioStreamSourceFactory.cc
-	${TORQUE2D_SRCDIR}/audio/wavStreamSource.cc
-	${TORQUE2D_SRCDIR}/component/dynamicConsoleMethodComponent.cpp
-	${TORQUE2D_SRCDIR}/component/simComponent.cpp
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponent.cpp
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorInstance.cpp
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorTemplate.cpp
-	${TORQUE2D_SRCDIR}/console/astAlloc.cc
-	${TORQUE2D_SRCDIR}/console/astNodes.cc
-	${TORQUE2D_SRCDIR}/console/cmdgram.cc
-	${TORQUE2D_SRCDIR}/console/cmdscan.cc
-	${TORQUE2D_SRCDIR}/console/codeBlock.cc
-	${TORQUE2D_SRCDIR}/console/compiledEval.cc
-	${TORQUE2D_SRCDIR}/console/compiler.cc
-	${TORQUE2D_SRCDIR}/console/console.cc
-	${TORQUE2D_SRCDIR}/console/consoleDoc.cc
-	${TORQUE2D_SRCDIR}/console/consoleFunctions.cc
-	${TORQUE2D_SRCDIR}/console/consoleLogger.cc
-	${TORQUE2D_SRCDIR}/console/consoleObject.cc
-	${TORQUE2D_SRCDIR}/console/consoleParser.cc
-	${TORQUE2D_SRCDIR}/console/consoleTypes.cc
-	${TORQUE2D_SRCDIR}/game/gameConnection.cc
-	${TORQUE2D_SRCDIR}/game/version.cc
-	${TORQUE2D_SRCDIR}/math/mathTypes.cc
-	${TORQUE2D_SRCDIR}/math/mathUtils.cc
-	${TORQUE2D_SRCDIR}/math/mBox.cc
-	${TORQUE2D_SRCDIR}/math/mConsoleFunctions.cc
-	${TORQUE2D_SRCDIR}/math/mMath_ASM.asm
-	${TORQUE2D_SRCDIR}/math/mMath_C.cc
-	${TORQUE2D_SRCDIR}/math/mMathAltivec.cc
-	${TORQUE2D_SRCDIR}/math/mMathAMD.cc
-	${TORQUE2D_SRCDIR}/math/mMathAMD_ASM.asm
-	${TORQUE2D_SRCDIR}/math/mMathFn.cc
-	${TORQUE2D_SRCDIR}/math/mMathSSE.cc
-	${TORQUE2D_SRCDIR}/math/mMathSSE_ASM.asm
-	${TORQUE2D_SRCDIR}/math/mMatrix.cc
-	${TORQUE2D_SRCDIR}/math/mPlaneTransformer.cc
-	${TORQUE2D_SRCDIR}/math/mQuadPatch.cc
-	${TORQUE2D_SRCDIR}/math/mQuat.cc
-	${TORQUE2D_SRCDIR}/math/mRandom.cc
-	${TORQUE2D_SRCDIR}/math/mSolver.cc
-	${TORQUE2D_SRCDIR}/math/mSplinePatch.cc
-	${TORQUE2D_SRCDIR}/persistence/simXMLDocument.cpp
 	${TORQUE2D_SRCDIR}/platform/cursorManager.cc
+	${TORQUE2D_SRCDIR}/platform/menus/popupMenu.cc
 	${TORQUE2D_SRCDIR}/platform/nativeDialogs/fileDialog.cc
+	${TORQUE2D_SRCDIR}/platform/nativeDialogs/msgBox.cpp
 	${TORQUE2D_SRCDIR}/platform/platform.cc
 	${TORQUE2D_SRCDIR}/platform/platformAssert.cc
 	${TORQUE2D_SRCDIR}/platform/platformCPU.cc
@@ -288,8 +320,6 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/platform/platformNetwork.cc
 	${TORQUE2D_SRCDIR}/platform/platformString.cc
 	${TORQUE2D_SRCDIR}/platform/platformVideo.cc
-	${TORQUE2D_SRCDIR}/platform/menus/popupMenu.cc
-	${TORQUE2D_SRCDIR}/platform/nativeDialogs/msgBox.cpp
 	${TORQUE2D_SRCDIR}/platform/tickable.cc
 	${TORQUE2D_SRCDIR}/sim/scriptGroup.cc
 	${TORQUE2D_SRCDIR}/sim/scriptObject.cc
@@ -310,36 +340,9 @@ set(TORQUE2D_SRCS
 	${TORQUE2D_SRCDIR}/string/stringTable.cc
 	${TORQUE2D_SRCDIR}/string/stringUnit.cpp
 	${TORQUE2D_SRCDIR}/string/unicode.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiBitmapButtonCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiBorderButton.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonBaseCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiCheckBoxCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiIconButtonCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiRadioCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/buttons/guiToolboxButtonCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiAutoScrollCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiCtrlArrayCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiDragAndDropCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiDynamicCtrlArrayCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiFormCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiFrameCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiPaneCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiRolloutCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiScrollCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiStackCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiTabBookCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/containers/guiWindowCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiControlListPopup.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiDebugger.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiEditCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiFilterCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiGraphCtrl.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiImageList.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiInspector.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiInspectorTypes.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiMenuBar.cc
-	${TORQUE2D_SRCDIR}/gui/editor/guiSeparatorCtrl.cc
+)
+
+set(TORQUE2D_UNITTEST_SRCS
 	${TORQUE2D_SRCDIR}/testing/tests/platformFileIoTests.cc
 	${TORQUE2D_SRCDIR}/testing/tests/platformMemoryTests.cc
 	${TORQUE2D_SRCDIR}/testing/tests/platformStringTests.cc
@@ -378,6 +381,20 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/2d/gui/guiSpriteCtrl_ScriptBindings.h
 	${TORQUE2D_SRCDIR}/2d/gui/sceneWindow.h
 	${TORQUE2D_SRCDIR}/2d/gui/sceneWindow_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/2d/scene/contactFilter.h
+	${TORQUE2D_SRCDIR}/2d/scene/debugDraw.h
+	${TORQUE2D_SRCDIR}/2d/scene/debugStats.h
+	${TORQUE2D_SRCDIR}/2d/scene/physicsProxy.h
+	${TORQUE2D_SRCDIR}/2d/scene/scene.h
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderFactories.h
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderObject.h
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderQueue.h
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderRequest.h
+	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderState.h
+	${TORQUE2D_SRCDIR}/2d/scene/scene_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/2d/scene/worldQuery.h
+	${TORQUE2D_SRCDIR}/2d/scene/worldQueryFilter.h
+	${TORQUE2D_SRCDIR}/2d/scene/worldQueryResult.h
 	${TORQUE2D_SRCDIR}/2d/sceneobject/compositeSprite.h
 	${TORQUE2D_SRCDIR}/2d/sceneobject/compositeSprite_ScriptBinding.h
 	${TORQUE2D_SRCDIR}/2d/sceneobject/imageFont.h
@@ -397,20 +414,53 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/2d/sceneobject/sprite_ScriptBinding.h
 	${TORQUE2D_SRCDIR}/2d/sceneobject/trigger.h
 	${TORQUE2D_SRCDIR}/2d/sceneobject/trigger_ScriptBinding.h
-	${TORQUE2D_SRCDIR}/2d/scene/contactFilter.h
-	${TORQUE2D_SRCDIR}/2d/scene/debugDraw.h
-	${TORQUE2D_SRCDIR}/2d/scene/debugStats.h
-	${TORQUE2D_SRCDIR}/2d/scene/physicsProxy.h
-	${TORQUE2D_SRCDIR}/2d/scene/scene.h
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderFactories.h
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderObject.h
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderQueue.h
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderRequest.h
-	${TORQUE2D_SRCDIR}/2d/scene/sceneRenderState.h
-	${TORQUE2D_SRCDIR}/2d/scene/scene_ScriptBinding.h
-	${TORQUE2D_SRCDIR}/2d/scene/worldQuery.h
-	${TORQUE2D_SRCDIR}/2d/scene/worldQueryFilter.h
-	${TORQUE2D_SRCDIR}/2d/scene/worldQueryResult.h
+	${TORQUE2D_SRCDIR}/Box2D/Box2D.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2ChainShape.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2CircleShape.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2EdgeShape.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2PolygonShape.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2Shape.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/b2BroadPhase.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/b2Collision.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/b2Distance.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/b2DynamicTree.h
+	${TORQUE2D_SRCDIR}/Box2D/Collision/b2TimeOfImpact.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2BlockAllocator.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2Draw.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2GrowableStack.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2Math.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2Settings.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2StackAllocator.h
+	${TORQUE2D_SRCDIR}/Box2D/Common/b2Timer.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2CircleContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2Contact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ContactSolver.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2PolygonContact.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2DistanceJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2FrictionJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2GearJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2Joint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2MotorJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2MouseJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2PrismaticJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2PulleyJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2RevoluteJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2RopeJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WeldJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WheelJoint.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Body.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2ContactManager.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Fixture.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Island.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2TimeStep.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2World.h
+	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2WorldCallbacks.h
+	${TORQUE2D_SRCDIR}/Box2D/Rope/b2Rope.h
 	${TORQUE2D_SRCDIR}/algorithm/crc.h
 	${TORQUE2D_SRCDIR}/algorithm/crctab.h
 	${TORQUE2D_SRCDIR}/algorithm/hashFunction.h
@@ -433,54 +483,13 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/assets/tamlAssetDeclaredVisitor.h
 	${TORQUE2D_SRCDIR}/assets/tamlAssetReferencedUpdateVisitor.h
 	${TORQUE2D_SRCDIR}/assets/tamlAssetReferencedVisitor.h
+	${TORQUE2D_SRCDIR}/audio/audio.h
 	${TORQUE2D_SRCDIR}/audio/audioAsset.h
-	${TORQUE2D_SRCDIR}/Box2D/Box2D.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/b2BroadPhase.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/b2Collision.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/b2Distance.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/b2DynamicTree.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/b2TimeOfImpact.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2ChainShape.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2CircleShape.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2EdgeShape.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2PolygonShape.h
-	${TORQUE2D_SRCDIR}/Box2D/Collision/Shapes/b2Shape.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2BlockAllocator.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2Draw.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2GrowableStack.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2Math.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2Settings.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2StackAllocator.h
-	${TORQUE2D_SRCDIR}/Box2D/Common/b2Timer.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Body.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2ContactManager.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Fixture.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2Island.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2TimeStep.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2World.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/b2WorldCallbacks.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2CircleContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2Contact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2ContactSolver.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Contacts/b2PolygonContact.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2DistanceJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2FrictionJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2GearJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2Joint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2MotorJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2MouseJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2PrismaticJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2PulleyJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2RevoluteJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2RopeJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WeldJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Dynamics/Joints/b2WheelJoint.h
-	${TORQUE2D_SRCDIR}/Box2D/Rope/b2Rope.h
+	${TORQUE2D_SRCDIR}/audio/audioBuffer.h
+	${TORQUE2D_SRCDIR}/audio/audioDataBlock.h
+	${TORQUE2D_SRCDIR}/audio/audioStreamSource.h
+	${TORQUE2D_SRCDIR}/audio/audioStreamSourceFactory.h
+	${TORQUE2D_SRCDIR}/audio/wavStreamSource.h
 	${TORQUE2D_SRCDIR}/collection/bitMatrix.h
 	${TORQUE2D_SRCDIR}/collection/bitSet.h
 	${TORQUE2D_SRCDIR}/collection/bitTables.h
@@ -498,16 +507,32 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/collection/vector2d.h
 	${TORQUE2D_SRCDIR}/collection/vectorHeap.h
 	${TORQUE2D_SRCDIR}/collection/vectorQueue.h
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponent.h
 	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponentRaiseEvent.h
 	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponent_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorInstance.h
 	${TORQUE2D_SRCDIR}/component/behaviors/behaviorInstance_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/component/behaviors/behaviorTemplate.h
 	${TORQUE2D_SRCDIR}/component/behaviors/behaviorTemplate_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/component/dynamicConsoleMethodComponent.h
+	${TORQUE2D_SRCDIR}/component/simComponent.h
+	${TORQUE2D_SRCDIR}/console/ast.h
+	${TORQUE2D_SRCDIR}/console/astNodeSizes.h
+	${TORQUE2D_SRCDIR}/console/cmdgram.h
+	${TORQUE2D_SRCDIR}/console/codeBlock.h
+	${TORQUE2D_SRCDIR}/console/compiler.h
+	${TORQUE2D_SRCDIR}/console/console.h
 	${TORQUE2D_SRCDIR}/console/consoleBaseType.h
 	${TORQUE2D_SRCDIR}/console/consoleDictionary.h
+	${TORQUE2D_SRCDIR}/console/consoleDoc.h
 	${TORQUE2D_SRCDIR}/console/consoleExprEvalState.h
 	${TORQUE2D_SRCDIR}/console/consoleInternal.h
+	${TORQUE2D_SRCDIR}/console/consoleLogger.h
 	${TORQUE2D_SRCDIR}/console/consoleNamespace.h
+	${TORQUE2D_SRCDIR}/console/consoleObject.h
+	${TORQUE2D_SRCDIR}/console/consoleParser.h
 	${TORQUE2D_SRCDIR}/console/consoleTypeValidators.h
+	${TORQUE2D_SRCDIR}/console/consoleTypes.h
 	${TORQUE2D_SRCDIR}/debug/profiler.h
 	${TORQUE2D_SRCDIR}/debug/remote/remoteDebugger1.h
 	${TORQUE2D_SRCDIR}/debug/remote/remoteDebugger1_ScriptBinding.h
@@ -520,8 +545,11 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/delegates/delegateSignal.h
 	${TORQUE2D_SRCDIR}/delegates/fastDelegate.h
 	${TORQUE2D_SRCDIR}/game/defaultGame.h
+	${TORQUE2D_SRCDIR}/game/gameConnection.h
 	${TORQUE2D_SRCDIR}/game/gameInterface.h
 	${TORQUE2D_SRCDIR}/game/gameInterface_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/game/resource.h
+	${TORQUE2D_SRCDIR}/game/version.h
 	${TORQUE2D_SRCDIR}/graphics/color.h
 	${TORQUE2D_SRCDIR}/graphics/dgl.h
 	${TORQUE2D_SRCDIR}/graphics/dynamicTexture.h
@@ -534,6 +562,34 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/graphics/textureHandle.h
 	${TORQUE2D_SRCDIR}/graphics/textureManager.h
 	${TORQUE2D_SRCDIR}/graphics/textureObject.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiBitmapButtonCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonBaseCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiCheckBoxCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiIconButtonCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiRadioCtrl.h
+	${TORQUE2D_SRCDIR}/gui/buttons/guiToolboxButtonCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiAutoScrollCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiCtrlArrayCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiDragAndDropCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiDynamicCtrlArrayCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiFormCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiFrameCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiPaneCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiRolloutCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiScrollCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiStackCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiTabBookCtrl.h
+	${TORQUE2D_SRCDIR}/gui/containers/guiWindowCtrl.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiDebugger.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiEditCtrl.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiFilterCtrl.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiGraphCtrl.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiImageList.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiInspector.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiInspectorTypes.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiMenuBar.h
+	${TORQUE2D_SRCDIR}/gui/editor/guiSeparatorCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiArrayCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiBackgroundCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiBitmapCtrl.h
@@ -547,9 +603,9 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/gui/guiDefaultControlRender.h
 	${TORQUE2D_SRCDIR}/gui/guiInputCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiListBoxCtrl.h
-	${TORQUE2D_SRCDIR}/gui/guiMessageVectorCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiMLTextCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiMLTextEditCtrl.h
+	${TORQUE2D_SRCDIR}/gui/guiMessageVectorCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiMouseEventCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiPopUpCtrl.h
 	${TORQUE2D_SRCDIR}/gui/guiPopUpCtrlEx.h
@@ -588,6 +644,23 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/io/zip/zipStatFilter.h
 	${TORQUE2D_SRCDIR}/io/zip/zipSubStream.h
 	${TORQUE2D_SRCDIR}/io/zip/zipTempStream.h
+	${TORQUE2D_SRCDIR}/math/mBox.h
+	${TORQUE2D_SRCDIR}/math/mConstants.h
+	${TORQUE2D_SRCDIR}/math/mMath.h
+	${TORQUE2D_SRCDIR}/math/mMathFn.h
+	${TORQUE2D_SRCDIR}/math/mMatrix.h
+	${TORQUE2D_SRCDIR}/math/mPlane.h
+	${TORQUE2D_SRCDIR}/math/mPlaneTransformer.h
+	${TORQUE2D_SRCDIR}/math/mPoint.h
+	${TORQUE2D_SRCDIR}/math/mQuadPatch.h
+	${TORQUE2D_SRCDIR}/math/mQuat.h
+	${TORQUE2D_SRCDIR}/math/mRandom.h
+	${TORQUE2D_SRCDIR}/math/mRect.h
+	${TORQUE2D_SRCDIR}/math/mSphere.h
+	${TORQUE2D_SRCDIR}/math/mSplinePatch.h
+	${TORQUE2D_SRCDIR}/math/mathIO.h
+	${TORQUE2D_SRCDIR}/math/mathTypes.h
+	${TORQUE2D_SRCDIR}/math/mathUtils.h
 	${TORQUE2D_SRCDIR}/math/rectClipper.h
 	${TORQUE2D_SRCDIR}/memory/dataChunker.h
 	${TORQUE2D_SRCDIR}/memory/factoryCache.h
@@ -616,6 +689,7 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/network/serverQuery.h
 	${TORQUE2D_SRCDIR}/network/tcpObject.h
 	${TORQUE2D_SRCDIR}/network/telnetConsole.h
+	${TORQUE2D_SRCDIR}/persistence/simXMLDocument.h
 	${TORQUE2D_SRCDIR}/persistence/taml/taml.h
 	${TORQUE2D_SRCDIR}/persistence/taml/tamlBinaryReader.h
 	${TORQUE2D_SRCDIR}/persistence/taml/tamlBinaryWriter.h
@@ -630,54 +704,13 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/persistence/taml/taml_ScriptBinding.h
 	${TORQUE2D_SRCDIR}/persistence/tinyXML/tinystr.h
 	${TORQUE2D_SRCDIR}/persistence/tinyXML/tinyxml.h
-	${TORQUE2D_SRCDIR}/audio/audio.h
-	${TORQUE2D_SRCDIR}/audio/audioBuffer.h
-	${TORQUE2D_SRCDIR}/audio/audioDataBlock.h
-	${TORQUE2D_SRCDIR}/audio/audioStreamSource.h
-	${TORQUE2D_SRCDIR}/audio/audioStreamSourceFactory.h
-	${TORQUE2D_SRCDIR}/audio/wavStreamSource.h
-	${TORQUE2D_SRCDIR}/component/dynamicConsoleMethodComponent.h
-	${TORQUE2D_SRCDIR}/component/simComponent.h
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorComponent.h
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorInstance.h
-	${TORQUE2D_SRCDIR}/component/behaviors/behaviorTemplate.h
-	${TORQUE2D_SRCDIR}/console/ast.h
-	${TORQUE2D_SRCDIR}/console/astNodeSizes.h
-	${TORQUE2D_SRCDIR}/console/cmdgram.h
-	${TORQUE2D_SRCDIR}/console/codeBlock.h
-	${TORQUE2D_SRCDIR}/console/compiler.h
-	${TORQUE2D_SRCDIR}/console/console.h
-	${TORQUE2D_SRCDIR}/console/consoleDoc.h
-	${TORQUE2D_SRCDIR}/console/consoleLogger.h
-	${TORQUE2D_SRCDIR}/console/consoleObject.h
-	${TORQUE2D_SRCDIR}/console/consoleParser.h
-	${TORQUE2D_SRCDIR}/console/consoleTypes.h
-	${TORQUE2D_SRCDIR}/game/gameConnection.h
-	${TORQUE2D_SRCDIR}/game/resource.h
-	${TORQUE2D_SRCDIR}/game/version.h
-	${TORQUE2D_SRCDIR}/math/mathIO.h
-	${TORQUE2D_SRCDIR}/math/mathTypes.h
-	${TORQUE2D_SRCDIR}/math/mathUtils.h
-	${TORQUE2D_SRCDIR}/math/mBox.h
-	${TORQUE2D_SRCDIR}/math/mConstants.h
-	${TORQUE2D_SRCDIR}/math/mMath.h
-	${TORQUE2D_SRCDIR}/math/mMathFn.h
-	${TORQUE2D_SRCDIR}/math/mMatrix.h
-	${TORQUE2D_SRCDIR}/math/mPlane.h
-	${TORQUE2D_SRCDIR}/math/mPlaneTransformer.h
-	${TORQUE2D_SRCDIR}/math/mPoint.h
-	${TORQUE2D_SRCDIR}/math/mQuadPatch.h
-	${TORQUE2D_SRCDIR}/math/mQuat.h
-	${TORQUE2D_SRCDIR}/math/mRandom.h
-	${TORQUE2D_SRCDIR}/math/mRect.h
-	${TORQUE2D_SRCDIR}/math/mSphere.h
-	${TORQUE2D_SRCDIR}/math/mSplinePatch.h
-	${TORQUE2D_SRCDIR}/persistence/simXMLDocument.h
-	${TORQUE2D_SRCDIR}/platformWin32/winWindow.h
 	${TORQUE2D_SRCDIR}/platform/event.h
 	${TORQUE2D_SRCDIR}/platform/glCoreFunc.h
 	${TORQUE2D_SRCDIR}/platform/glExtFunc.h
 	${TORQUE2D_SRCDIR}/platform/gluFunc.h
+	${TORQUE2D_SRCDIR}/platform/menus/popupMenu.h
+	${TORQUE2D_SRCDIR}/platform/nativeDialogs/fileDialog.h
+	${TORQUE2D_SRCDIR}/platform/nativeDialogs/msgBox.h
 	${TORQUE2D_SRCDIR}/platform/platform.h
 	${TORQUE2D_SRCDIR}/platform/platformAL.h
 	${TORQUE2D_SRCDIR}/platform/platformAssert.h
@@ -694,11 +727,14 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/platform/platformNetwork.h
 	${TORQUE2D_SRCDIR}/platform/platformSemaphore.h
 	${TORQUE2D_SRCDIR}/platform/platformString.h
-	${TORQUE2D_SRCDIR}/platform/platformTimeManager.h
 	${TORQUE2D_SRCDIR}/platform/platformTLS.h
+	${TORQUE2D_SRCDIR}/platform/platformTimeManager.h
 	${TORQUE2D_SRCDIR}/platform/platformVFS.h
 	${TORQUE2D_SRCDIR}/platform/platformVideo.h
 	${TORQUE2D_SRCDIR}/platform/platform_ScriptBinding.h
+	${TORQUE2D_SRCDIR}/platform/threads/mutex.h
+	${TORQUE2D_SRCDIR}/platform/threads/semaphore.h
+	${TORQUE2D_SRCDIR}/platform/threads/thread.h
 	${TORQUE2D_SRCDIR}/platform/tickable.h
 	${TORQUE2D_SRCDIR}/platform/types.codewarrior.h
 	${TORQUE2D_SRCDIR}/platform/types.gcc.h
@@ -711,29 +747,24 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/platform/typesPPC.h
 	${TORQUE2D_SRCDIR}/platform/typesWin32.h
 	${TORQUE2D_SRCDIR}/platform/typesX86UNIX.h
-	${TORQUE2D_SRCDIR}/platform/menus/popupMenu.h
-	${TORQUE2D_SRCDIR}/platform/nativeDialogs/fileDialog.h
-	${TORQUE2D_SRCDIR}/platform/nativeDialogs/msgBox.h
-	${TORQUE2D_SRCDIR}/platform/threads/mutex.h
-	${TORQUE2D_SRCDIR}/platform/threads/semaphore.h
-	${TORQUE2D_SRCDIR}/platform/threads/thread.h
-	${TORQUE2D_SRCDIR}/platformWin32/gl_types.h
 	${TORQUE2D_SRCDIR}/platformWin32/glWinExtFunc.h
 	${TORQUE2D_SRCDIR}/platformWin32/glWinFunc.h
+	${TORQUE2D_SRCDIR}/platformWin32/gl_types.h
+	${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.h
 	${TORQUE2D_SRCDIR}/platformWin32/platformGL.h
 	${TORQUE2D_SRCDIR}/platformWin32/platformWin32.h
 	${TORQUE2D_SRCDIR}/platformWin32/vfsRes.h
 	${TORQUE2D_SRCDIR}/platformWin32/win32NPatch.h
-	${TORQUE2D_SRCDIR}/platformWin32/win_common_prefix.h
-	${TORQUE2D_SRCDIR}/platformWin32/win_debug_prefix.h
-	${TORQUE2D_SRCDIR}/platformWin32/win_release_prefix.h
 	${TORQUE2D_SRCDIR}/platformWin32/winConsole.h
 	${TORQUE2D_SRCDIR}/platformWin32/winDInputDevice.h
 	${TORQUE2D_SRCDIR}/platformWin32/winDirectInput.h
 	${TORQUE2D_SRCDIR}/platformWin32/winFont.h
 	${TORQUE2D_SRCDIR}/platformWin32/winOGLVideo.h
 	${TORQUE2D_SRCDIR}/platformWin32/winVideo.h
-	${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.h
+	${TORQUE2D_SRCDIR}/platformWin32/winWindow.h
+	${TORQUE2D_SRCDIR}/platformWin32/win_common_prefix.h
+	${TORQUE2D_SRCDIR}/platformWin32/win_debug_prefix.h
+	${TORQUE2D_SRCDIR}/platformWin32/win_release_prefix.h
 	${TORQUE2D_SRCDIR}/sim/scriptGroup.h
 	${TORQUE2D_SRCDIR}/sim/scriptObject.h
 	${TORQUE2D_SRCDIR}/sim/simBase.h
@@ -754,34 +785,6 @@ set(TORQUE2D_HEADERS
 	${TORQUE2D_SRCDIR}/string/stringTable.h
 	${TORQUE2D_SRCDIR}/string/stringUnit.h
 	${TORQUE2D_SRCDIR}/string/unicode.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiBitmapButtonCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonBaseCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiButtonCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiCheckBoxCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiIconButtonCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiRadioCtrl.h
-	${TORQUE2D_SRCDIR}/gui/buttons/guiToolboxButtonCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiAutoScrollCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiCtrlArrayCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiDragAndDropCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiDynamicCtrlArrayCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiFormCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiFrameCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiPaneCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiRolloutCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiScrollCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiStackCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiTabBookCtrl.h
-	${TORQUE2D_SRCDIR}/gui/containers/guiWindowCtrl.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiDebugger.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiEditCtrl.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiFilterCtrl.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiGraphCtrl.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiImageList.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiInspector.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiInspectorTypes.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiMenuBar.h
-	${TORQUE2D_SRCDIR}/gui/editor/guiSeparatorCtrl.h
 	${TORQUE2D_SRCDIR}/testing/unitTesting.h
 	${TORQUE2D_SRCDIR}/torqueConfig.h
 )
@@ -842,11 +845,16 @@ add_library(ljpeg
 
 if(WIN32)
 	list(APPEND TORQUE2D_SRCS
-		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32FileDialog.cc
 		${TORQUE2D_SRCDIR}/platformWin32/cardProfile.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/menus/popupMenuWin32.cc
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32FileDialog.cc
+		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32MsgBox.cpp
+		${TORQUE2D_SRCDIR}/platformWin32/threads/mutex.cc
+		${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winAsmBlit.cc
-		${TORQUE2D_SRCDIR}/platformWin32/winConsole.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winCPUInfo.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winConsole.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winDInputDevice.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winDirectInput.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winExec.cc
@@ -864,56 +872,54 @@ if(WIN32)
 		${TORQUE2D_SRCDIR}/platformWin32/winProcessControl.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winSemaphore.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winStrings.cc
-		${TORQUE2D_SRCDIR}/platformWin32/winTime.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winTLS.cc
+		${TORQUE2D_SRCDIR}/platformWin32/winTime.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winUser.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winVFS.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winVideo.cc
 		${TORQUE2D_SRCDIR}/platformWin32/winWindow.cc
-		${TORQUE2D_SRCDIR}/platformWin32/menus/popupMenuWin32.cc
-		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32DirectoryResolver.cpp
-		${TORQUE2D_SRCDIR}/platformWin32/nativeDialogs/win32MsgBox.cpp
-		${TORQUE2D_SRCDIR}/platformWin32/threads/mutex.cc
-		${TORQUE2D_SRCDIR}/platformWin32/threads/thread.cc
 	)
 
 	include_directories(
+		${TORQUE2D_LIBDIR}/lpng
 		${TORQUE2D_LIBDIR}/openal/win32
 		${TORQUE2D_LIBDIR}/zlib
-		${TORQUE2D_LIBDIR}/lpng
 	)
 	list(APPEND TORQUE2D_LIBS
 		COMCTL32
- 		COMDLG32
- 		USER32
  		ADVAPI32
+ 		COMDLG32
  		GDI32
- 		RPCRT4
- 		WINMM
- 		WSOCK32
- 		VFW32
  		IMM32
- 		UNICOWS
+ 		OLE32
+ 		RPCRT4
  		SHELL32
  		SHLWAPI
- 		OLE32
+ 		UNICOWS
+ 		USER32
+ 		VFW32
+ 		WINMM
+ 		WSOCK32
 	)
 elseif(UNIX)
 	list(APPEND TORQUE2D_SRCS
 		${TORQUE2D_SRCDIR}/platform/platformNetAsync.unix.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/menus/popupMenuX86UNIX.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXFileDialog.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXMsgBox.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXAsmBlit.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXConsole.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXCPUInfo.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXConsole.cc
 # 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXDedicatedStub.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXExec.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFileio.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXFont.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXGL.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXIO.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXInput.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXInputManager.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXIO.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMath_ASM.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMath.cc
+		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMath_ASM.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMemory.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMessageBox.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXMutex.cc
@@ -928,45 +934,46 @@ elseif(UNIX)
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUser.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXUtils.cc
 		${TORQUE2D_SRCDIR}/platformX86UNIX/x86UNIXWindow.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/menus/popupMenuX86UNIX.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXFileDialog.cc
-		${TORQUE2D_SRCDIR}/platformX86UNIX/nativeDialogs/x86UNIXMsgBox.cc
 	)
 
-	find_package(SDL REQUIRED)
 	find_package(Freetype REQUIRED)
 	find_package(JPEG REQUIRED)
-	find_package(PNG REQUIRED)
 	find_package(OpenAL REQUIRED)
 	find_package(OpenGL REQUIRED)
+	find_package(PNG REQUIRED)
+	find_package(SDL REQUIRED)
+	find_package(X11)
+
 	if(NOT OPENGL_GLU_FOUND)
 		message(FATAL "OpenGL GLU not found")
 	endif()
-	find_package(X11)
+
 	if(NOT X11_Xft_FOUND)
 		message(FATAL "X11 Xft not found")
 	endif()
+
 	include_directories(
-		${TORQUE2D_LIBDIR}/openal/LINUX
 		${FREETYPE_INCLUDE_DIRS}
-		${SDL_INCLUDE_DIR}
 		${JPEG_INCLUDE_DIR}
-		${PNG_INCLUDE_DIR}
 		${OPENAL_INCLUDE_DIR}
-		${X11_Xft_INCLUDE_PATH}
 		${OPENGL_INCLUDE_DIR}
+		${PNG_INCLUDE_DIR}
+		${SDL_INCLUDE_DIR}
+		${TORQUE2D_LIBDIR}/openal/LINUX
+		${X11_Xft_INCLUDE_PATH}
 	)
+
 	list(APPEND TORQUE2D_LIBS
-		pthread
-		${FREETYPE_LIBRARIES}
-		${SDL_LIBRARY}
-		${JPEG_LIBRARIES}
-		${PNG_LIBRARIES}
-		${OPENAL_LIBRARY}
-		${X11_Xft_LIB}
-		${X11_LIBRARIES} # TODO use only libraries needed
 		${CMAKE_DL_LIBS}
+		${FREETYPE_LIBRARIES}
+		${JPEG_LIBRARIES}
+		${OPENAL_LIBRARY}
 		${OPENGL_glu_LIBRARY}
+		${PNG_LIBRARIES}
+		${SDL_LIBRARY}
+		${X11_LIBRARIES} # TODO use only libraries needed
+		${X11_Xft_LIB}
+		pthread
 	)
 	# Required for nasm with math/*_ASM.asm
 	list(APPEND TORQUE2D_PROPERTIES COMPILE_FLAGS -DLINUX)
@@ -975,8 +982,8 @@ endif()
 
 
 include_directories(
-	${TORQUE2D_SRCDIR}
 	${TORQUE2D_LIBDIR}/ljpeg
+	${TORQUE2D_SRCDIR}
 )
 
 add_definitions(
@@ -998,6 +1005,7 @@ if(DEBUG STREQUAL BUILD_TYPE)
 	)
 
 	set(TORQUE2D_TARGET Torque2D_DEBUG)
+	list(APPEND TORQUE2D_SRCS ${TORQUE2D_UNITTEST_SRCS})
 elseif(SHIPPING STREQUAL BUILD_TYPE)
 	set(TORQUE2D_TARGET Torque2D)
 else() # Release, includes unit tests
@@ -1007,6 +1015,7 @@ else() # Release, includes unit tests
 	)
 
 	set(TORQUE2D_TARGET Torque2D)
+	list(APPEND TORQUE2D_SRCS ${TORQUE2D_UNITTEST_SRCS})
 endif()
 
 
