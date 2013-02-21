@@ -957,6 +957,7 @@ elseif(UNIX)
 		${OPENGL_INCLUDE_DIR}
 	)
 	list(APPEND TORQUE2D_LIBS
+		pthread
 		${FREETYPE_LIBRARIES}
 		${SDL_LIBRARY}
 		${JPEG_LIBRARIES}
@@ -969,6 +970,7 @@ elseif(UNIX)
 	)
 	# Required for nasm with math/*_ASM.asm
 	list(APPEND TORQUE2D_PROPERTIES COMPILE_FLAGS -DLINUX)
+	set(CMAKE_CXX_FLAGS "-m32 -fpermissive -w")
 endif()
 
 
@@ -976,82 +978,47 @@ include_directories(
 	${TORQUE2D_SRCDIR}
 	${TORQUE2D_LIBDIR}/ljpeg
 )
-set(DEBUG 1)
 
-if(DEBUG)
+add_definitions(
+	-DUNICODE
+	-D_CRT_SECURE_NO_DEPRECATE
+)
+
+string(TOUPPER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
+
+if(DEBUG STREQUAL BUILD_TYPE)
 	include_directories(
 		${TORQUE2D_SRCDIR}/testing/googleTest
 		${TORQUE2D_SRCDIR}/testing/googleTest/include
 	)
+
 	add_definitions(
 		-DTORQUE_DEBUG
 		-DTORQUE_DEBUG_GUARD
-		-D_CRT_SECURE_NO_DEPRECATE
-		-DUNICODE
 	)
-	add_executable(Torque2D_DEBUG ${TORQUE2D_SRCS} ${TORQUE2D_HEADERS})
-	set (CMAKE_CXX_FLAGS "-m32 -fpermissive -w")
-	target_link_libraries(Torque2D_DEBUG
-		pthread
-		ljpeg
-		${TORQUE2D_LIBS}
-	)
-	if(TORQUE2D_PROPERTIES)
-		set_target_properties(Torque2D_DEBUG PROPERTIES
-			${TORQUE2D_PROPERTIES}
-		)
-	endif()
-	#../../Lib/unicode;../../lib/MSPlatformSDK/Lib;
-endif()
 
-if(RELEASE)
+	set(TORQUE2D_TARGET Torque2D_DEBUG)
+elseif(SHIPPING STREQUAL BUILD_TYPE)
+	set(TORQUE2D_TARGET Torque2D)
+else() # Release, includes unit tests
 	include_directories(
 		${TORQUE2D_SRCDIR}/testing/googleTest
 		${TORQUE2D_SRCDIR}/testing/googleTest/include
 	)
-	add_definitions(UNICODE
-		_CRT_SECURE_NO_DEPRECATE
-	)
-	include_directories(COMCTL32
-		comdlg32
-		user32
-		advapi32
-		gdi32
-		winmm
-		wsock32
-		vfw32
-		imm32
-		unicows
-		shell32
-		shlwapi
-		ole32
-		rpcrt4
-	)
-	add_executable(Torque2D)
-	#../../Lib/unicode;../../Lib/MSPlatformSDK/Lib;
+
+	set(TORQUE2D_TARGET Torque2D)
 endif()
 
-if(SHIPPING)
-	add_definitions(TORQUE_SHIPPING
-		UNICODE
-		_CRT_SECURE_NO_DEPRECATE
-	)
-	include_directories(COMCTL32
-		comdlg32
-		user32
-		advapi32
-		gdi32
-		winmm
-		wsock32
-		vfw32
-		imm32
-		unicows
-		shell32
-		shlwapi
-		ole32
-		rpcrt4
-	)
-	add_executable(Torque2D)
-	#../../Lib/unicode;../../Lib/MSPlatformSDK/Lib;
-endif()
 
+add_executable(${TORQUE2D_TARGET} ${TORQUE2D_SRCS} ${TORQUE2D_HEADERS})
+
+target_link_libraries(${TORQUE2D_TARGET}
+	ljpeg
+	${TORQUE2D_LIBS}
+)
+
+if(TORQUE2D_PROPERTIES)
+	set_target_properties(${TORQUE2D_TARGET} PROPERTIES
+		${TORQUE2D_PROPERTIES}
+	)
+endif()
