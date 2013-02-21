@@ -418,9 +418,9 @@ bool dPathCopy(const char *fromName, const char *toName, bool nooverwrite)
     if(!name || (dStrlen(name) >= MAX_PATH))
        return(false);
    if(Platform::isFile(name))
-      return(dFileDelete(name) == 0);
+      return dFileDelete(name);
    else
-      return dFileDelete(name) == 0;
+      return dFileDelete(name);
  }
 
  bool Platform::fileRename(const char *oldName, const char *newName)
