@@ -204,7 +204,19 @@ S32 dStrcmp(const char *str1, const char *str2)
 
 int dStrcmp(const UTF16 *str1, const UTF16 *str2)
 {
-	return 	(str1, str2);
+	UTF16 *p1 = str1, *p2 = str2;
+
+	while(*p1 != 0) {
+		if(*p1 < *p2) return -1;
+		if(*p1 > *p2) return 1;
+		if(*p1++ == *p2++) continue;
+	}
+
+	// does p2 have more characters?
+	if(*p2 != 0) return -1;
+
+	// equal
+	return 0;
 }
 
 S32 dStricmp(const char *str1, const char *str2)
