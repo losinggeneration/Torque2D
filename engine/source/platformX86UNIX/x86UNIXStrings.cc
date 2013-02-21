@@ -143,6 +143,9 @@ char* dStrcatl(char *dst, U32 dstSize, ...)
    while (dstSize && *p++)
       dstSize--;
 
+   // reset p to just after dst's last character
+   p = dst + dstSize;
+
    va_list args;
    va_start(args, dstSize);
 
