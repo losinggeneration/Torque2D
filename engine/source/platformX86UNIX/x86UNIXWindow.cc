@@ -746,10 +746,21 @@ void Platform::init()
 
       // initialize video
       Video::init();
-      if ( Video::installDevice( OpenGLDevice::create() ) )
+      OpenGLDevice* oglDevice = OpenGLDevice::create();
+      if ( Video::installDevice( oglDevice ) )
          Con::printf( "   OpenGL display device detected." );
       else
          Con::printf( "   OpenGL display device not detected." );
+
+    U32 width, height, bpp;
+    width=800;
+    height=600;
+    bpp=32;
+    bool fullScreen = 0;
+      //Video::setDevice(oglDevice->mDeviceName, width, height, bpp, fullScreen);
+    Video::setDevice("OpenGL", width, height, bpp, fullScreen);
+    Video::reactivate();
+      //oglDevice->activate();
 
       Con::printf(" ");
    }
@@ -934,14 +945,27 @@ int main(S32 argc, const char **argv)
    // check to see if X is running
    DetectWindowingSystem();
 
+   
    // run the game
    returnVal = Game->mainInitialize(newCommandLine.size(),
       const_cast<const char**>(newCommandLine.address()));
 
+
+    // run the game main loop.
+    while( Game->isRunning() )
+    {
+        Game->mainLoop();
+    }
+
+    // Shut the game down.
+    Game->mainShutdown();
+
+    // Destroy fonts.
+    //createFontShutdown();
+   
    // dispose of command line
    for(U32 i = 0; i < newCommandLine.size(); i++)
       delete [] newCommandLine[i];
-
    // dispose of state
    delete x86UNIXState;
 
