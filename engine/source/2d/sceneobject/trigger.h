@@ -24,7 +24,7 @@
 #define _TRIGGER_H_
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 #ifndef _HASHTABLE_H

@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SCROLLER_H_
-#include "Scroller.h"
+#include "scroller.h"
 #endif
 
 #ifndef _DGL_H_
@@ -41,7 +41,7 @@
 #endif
 
 // Script bindings.
-#include "Scroller_ScriptBinding.h"
+#include "scroller_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

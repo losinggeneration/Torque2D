@@ -24,11 +24,11 @@
 #define _COMPOSITE_SPRITE_H_
 
 #ifndef _SPRITE_BATCH_H_
-#include "2d/core/SpriteBatch.h"
+#include "2d/core/spriteBatch.h"
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 //------------------------------------------------------------------------------  

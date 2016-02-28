@@ -24,11 +24,11 @@
 #define _SCENE_OBJECT_H_
 
 #ifndef _SCENE_H_
-#include "2d/scene/Scene.h"
+#include "2d/scene/scene.h"
 #endif
 
 #ifndef _DEBUG_STATS_H_
-#include "2d/scene/DebugStats.h"
+#include "2d/scene/debugStats.h"
 #endif
 
 #ifndef _SIMBASE_H_
@@ -40,23 +40,23 @@
 #endif
 
 #ifndef _SCENE_WINDOW_H_
-#include "2d/gui/SceneWindow.h"
+#include "2d/gui/sceneWindow.h"
 #endif
 
 #ifndef _BATCH_RENDER_H_
-#include "2d/core/BatchRender.h"
+#include "2d/core/batchRender.h"
 #endif
 
 #ifndef _UTILITY_H_
-#include "2d/core/Utility.h"
+#include "2d/core/utility.h"
 #endif
 
 #ifndef _PHYSICS_PROXY_H_
-#include "2d/scene/PhysicsProxy.h"
+#include "2d/scene/physicsProxy.h"
 #endif
 
 #ifndef _SCENE_RENDER_OBJECT_H_
-#include "2d/scene/SceneRenderObject.h"
+#include "2d/scene/sceneRenderObject.h"
 #endif
 
 #ifndef _BEHAVIOR_COMPONENT_H_

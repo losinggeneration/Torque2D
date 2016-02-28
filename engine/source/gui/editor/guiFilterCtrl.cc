@@ -23,7 +23,7 @@
 #include "console/console.h"
 #include "console/consoleTypes.h"
 #include "graphics/dgl.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "gui/editor/guiFilterCtrl.h"
 #include "platform/event.h"
 #include "math/mMath.h"

@@ -36,7 +36,7 @@
 #endif
 
 #ifndef _TICKABLE_H_
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 #endif
 
 //-----------------------------------------------------------------------------

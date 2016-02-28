@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _REMOTE_DEBUGGER_BASE_H_
-#include "debug/remote/RemoteDebuggerBase.h"
+#include "debug/remote/remoteDebuggerBase.h"
 #endif
 
 #ifndef _REMOTE_DEBUGGER_BRIDGE_H_
-#include "debug/remote/RemoteDebuggerBridge.h"
+#include "debug/remote/remoteDebuggerBridge.h"
 #endif
 
 #ifndef _FRAMEALLOCATOR_H_
@@ -41,7 +41,7 @@
 #endif
 
 // Script bindings.
-#include "debug/remote/RemoteDebuggerBase_ScriptBinding.h"
+#include "debug/remote/remoteDebuggerBase_ScriptBinding.h"
 
 //-----------------------------------------------------------------------------
 

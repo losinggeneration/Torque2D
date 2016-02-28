@@ -21,19 +21,19 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _COMPOSITE_SPRITE_H_
-#include "2d/sceneobject/CompositeSprite.h"
+#include "2d/sceneobject/compositeSprite.h"
 #endif
 
 #ifndef _SPRITE_BATCH_ITEM_H_
-#include "2d/core/SpriteBatchItem.h"
+#include "2d/core/spriteBatchItem.h"
 #endif
 
 #ifndef _RENDER_PROXY_H_
-#include "2d/core/RenderProxy.h"
+#include "2d/core/renderProxy.h"
 #endif
 
 // Script bindings.
-#include "2d/sceneobject/CompositeSprite_ScriptBinding.h"
+#include "2d/sceneobject/compositeSprite_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

@@ -24,7 +24,7 @@
 #define _GUITICKCTRL_H_
 
 #include "guiControl.h"
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 
 /// This Gui Control is designed to be subclassed and let people create controls
 /// which want to recieve update ticks at a constant interval. This class was

@@ -23,10 +23,10 @@
 #include "graphics/dgl.h"
 #include "console/consoleTypes.h"
 #include "io/bitStream.h"
-#include "Trigger.h"
+#include "trigger.h"
 
 // Script bindings.
-#include "Trigger_ScriptBinding.h"
+#include "trigger_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

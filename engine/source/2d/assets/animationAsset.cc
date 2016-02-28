@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 #include "console/consoleTypes.h"
-#include "2d/assets/ImageAsset.h"
-#include "2d/assets/AnimationAsset.h"
+#include "2d/assets/imageAsset.h"
+#include "2d/assets/animationAsset.h"
 
 // Script bindings.
-#include "AnimationAsset_ScriptBinding.h"
+#include "animationAsset_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

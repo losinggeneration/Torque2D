@@ -20,7 +20,7 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "2d/assets/ParticleAssetFieldCollection.h"
+#include "2d/assets/particleAssetFieldCollection.h"
 
 //-----------------------------------------------------------------------------
 

@@ -30,10 +30,10 @@
 
 #include "string/stringBuffer.h"
 
-#include "ImageFont.h"
+#include "imageFont.h"
 
 // Script bindings.
-#include "ImageFont_ScriptBinding.h"
+#include "imageFont_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

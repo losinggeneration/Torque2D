@@ -24,7 +24,7 @@
 #define _SPRITE_H_
 
 #ifndef _SPRITE_BASE_H_
-#include "2d/core/SpriteBase.h"
+#include "2d/core/spriteBase.h"
 #endif
 
 //------------------------------------------------------------------------------

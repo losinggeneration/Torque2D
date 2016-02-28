@@ -24,11 +24,11 @@
 #define _SPRITE_BATCH_H_
 
 #ifndef _SPRITE_BATCH_ITEM_H_
-#include "2d/core/SpriteBatchItem.h"
+#include "2d/core/spriteBatchItem.h"
 #endif
 
 #ifndef _SCENE_RENDER_OBJECT_H_
-#include "2d/scene/SceneRenderObject.h"
+#include "2d/scene/sceneRenderObject.h"
 #endif
 
 //------------------------------------------------------------------------------  

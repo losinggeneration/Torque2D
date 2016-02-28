@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SPRITE_BASE_H_
-#include "SpriteBase.h"
+#include "spriteBase.h"
 #endif
 
 #ifndef _DGL_H_
@@ -33,7 +33,7 @@
 #endif
 
 // Script bindings.
-#include "SpriteBase_ScriptBinding.h"
+#include "spriteBase_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

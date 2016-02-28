@@ -24,7 +24,7 @@
 // XML Document Object
 ////////////////////////////////////////////////////////////////////////////////
 
-#include "persistence/SimXMLDocument.h"
+#include "persistence/simXMLDocument.h"
 #include "memory/frameAllocator.h"
 #include "sim/simBase.h"
 #include "console/consoleInternal.h"

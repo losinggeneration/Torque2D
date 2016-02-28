@@ -23,9 +23,9 @@
 #include "graphics/gBitmap.h"
 #include "console/consoleTypes.h"
 #include "io/bitStream.h"
-#include "2d/sceneobject/SceneObject.h"
-#include "2d/assets/AnimationAsset.h"
-#include "AnimationController.h"
+#include "2d/sceneobject/sceneObject.h"
+#include "2d/assets/animationAsset.h"
+#include "animationController.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SPRITE_BATCH_H_
-#include "SpriteBatch.h"
+#include "spriteBatch.h"
 #endif
 
 #ifndef _SCENE_RENDER_OBJECT_H_
-#include "2d/scene/SceneRenderObject.h"
+#include "2d/scene/sceneRenderObject.h"
 #endif
 
 //------------------------------------------------------------------------------

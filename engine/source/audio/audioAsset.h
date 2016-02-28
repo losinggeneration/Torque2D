@@ -43,7 +43,7 @@
 #endif
 
 #ifndef _UTILITY_H_
-#include "2d/core/Utility.h"
+#include "2d/core/utility.h"
 #endif
 
 //----------------------------------------------------------------------------

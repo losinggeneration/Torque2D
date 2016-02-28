@@ -24,7 +24,7 @@
 #define _SCENE_RENDER_QUEUE_H_
 
 #ifndef _SCENE_RENDER_REQUEST_H_
-#include "2d/scene/SceneRenderRequest.h"
+#include "2d/scene/sceneRenderRequest.h"
 #endif
 
 // Debug Profiling.

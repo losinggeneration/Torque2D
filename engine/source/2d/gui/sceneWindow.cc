@@ -26,16 +26,16 @@
 #include "console/console.h"
 #include "console/consoleTypes.h"
 #include "math/mMathFn.h"
-#include "2d/sceneobject/SceneObject.h"
-#include "2d/core/Utility.h"
-#include "2d/gui/SceneWindow.h"
+#include "2d/sceneobject/sceneObject.h"
+#include "2d/core/utility.h"
+#include "2d/gui/sceneWindow.h"
 
 #ifndef _ASSET_MANAGER_H_
 #include "assets/assetManager.h"
 #endif
 
 // Script bindings.
-#include "SceneWindow_ScriptBinding.h"
+#include "sceneWindow_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

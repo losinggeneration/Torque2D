@@ -21,11 +21,11 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SCENE_RENDER_FACTORIES_H_
-#include "2d/scene/SceneRenderFactories.h"
+#include "2d/scene/sceneRenderFactories.h"
 #endif
 
 #ifndef _SCENE_RENDER_QUEUE_H_
-#include "2d/scene/SceneRenderQueue.h"
+#include "2d/scene/sceneRenderQueue.h"
 #endif
 
 //-----------------------------------------------------------------------------

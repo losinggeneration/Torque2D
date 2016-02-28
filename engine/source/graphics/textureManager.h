@@ -33,11 +33,11 @@
 #endif
 
 #ifndef _TEXTURE_OBJECT_H_
-#include "graphics/TextureObject.h"
+#include "graphics/textureObject.h"
 #endif
 
 #ifndef _TEXTURE_DICTIONARY_H_
-#include "graphics/TextureDictionary.h"
+#include "graphics/textureDictionary.h"
 #endif
 
 //-----------------------------------------------------------------------------

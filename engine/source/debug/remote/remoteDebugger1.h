@@ -24,7 +24,7 @@
 #define _REMOTE_DEBUGGER1_H_
 
 #ifndef _REMOTE_DEBUGGER_BASE_H_
-#include "debug/remote/RemoteDebuggerBase.h"
+#include "debug/remote/remoteDebuggerBase.h"
 #endif
 
 //-----------------------------------------------------------------------------

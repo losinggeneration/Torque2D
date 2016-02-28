@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _REMOTE_DEBUGGER1_H_
-#include "debug/remote/RemoteDebugger1.h"
+#include "debug/remote/remoteDebugger1.h"
 #endif
 
 #ifndef _COMPILER_H_
@@ -29,7 +29,7 @@
 #endif
 
 // Script bindings.
-#include "debug/remote/RemoteDebugger1_ScriptBinding.h"
+#include "debug/remote/remoteDebugger1_ScriptBinding.h"
 
 //-----------------------------------------------------------------------------
 

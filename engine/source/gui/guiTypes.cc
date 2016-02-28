@@ -30,7 +30,7 @@
 #include "graphics/dgl.h"
 #include "gui/guiTypes.h"
 #include "graphics/gBitmap.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- //
 IMPLEMENT_CONOBJECT(GuiCursor);

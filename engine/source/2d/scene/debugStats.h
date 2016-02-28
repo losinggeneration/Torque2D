@@ -24,7 +24,7 @@
 #define _DEBUG_STATS_H_
 
 #ifndef _TORQUE_TYPES_H_
-#include "platform\types.h"
+#include "platform/types.h"
 #endif
 
 //-----------------------------------------------------------------------------

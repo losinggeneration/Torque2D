@@ -32,15 +32,15 @@
 #endif
 
 #ifndef _UTILITY_H_
-#include "2d/core/Utility.h"
+#include "2d/core/utility.h"
 #endif
 
 #ifndef _CORE_MATH_H_
-#include "2d/core/CoreMath.h"
+#include "2d/core/coreMath.h"
 #endif
 
 #ifndef BOX2D_H
-#include "box2d/Box2D.h"
+#include "Box2D/Box2D.h"
 #endif
 
 ///-----------------------------------------------------------------------------

@@ -24,15 +24,15 @@
 #define _SPRITE_BASE_H_
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 #ifndef _SPRITE_PROXY_BASE_H_
-#include "2d/core/SpriteProxyBase.h"
+#include "2d/core/spriteProxyBase.h"
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ASSET_PTR_H_

@@ -31,7 +31,7 @@
 #endif
 
 // Script bindings.
-#include "ParticleAssetEmitter_ScriptBinding.h"
+#include "particleAssetEmitter_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

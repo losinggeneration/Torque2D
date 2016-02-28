@@ -24,11 +24,11 @@
 #define _SCENE_RENDER_REQUEST_H_
 
 #ifndef _SCENE_RENDER_FACTORIES_H_
-#include "2d/scene/SceneRenderFactories.h"
+#include "2d/scene/sceneRenderFactories.h"
 #endif
 
 #ifndef _VECTOR2_H_
-#include "2d/core/Vector2.h"
+#include "2d/core/vector2.h"
 #endif
 
 #ifndef _COLOR_H_

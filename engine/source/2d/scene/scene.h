@@ -32,7 +32,7 @@
 #endif
 
 #ifndef _VECTOR2_H_
-#include "2d/core/Vector2.h"
+#include "2d/core/vector2.h"
 #endif
 
 #ifndef _FILESTREAM_H_
@@ -44,27 +44,27 @@
 #endif
 
 #ifndef _TICKABLE_H_
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 #endif
 
 #ifndef _DEBUG_STATS_H_
-#include "2d/scene/DebugStats.h"
+#include "2d/scene/debugStats.h"
 #endif
 
 #ifndef _PHYSICS_PROXY_H_
-#include "2d/scene/PhysicsProxy.h"
+#include "2d/scene/physicsProxy.h"
 #endif
 
 #ifndef _WORLD_QUERY_H_
-#include "2d/scene/WorldQuery.h"
+#include "2d/scene/worldQuery.h"
 #endif
 
 #ifndef BOX2D_H
-#include "box2d\Box2D.h"
+#include "Box2D/Box2D.h"
 #endif
 
 #ifndef _DEBUG_DRAW_H_
-#include "2d/scene/DebugDraw.h"
+#include "2d/scene/debugDraw.h"
 #endif
 
 #ifndef _HASHTABLE_H
@@ -72,15 +72,15 @@
 #endif
 
 #ifndef _BATCH_RENDER_H_
-#include "2d/core/BatchRender.h"
+#include "2d/core/batchRender.h"
 #endif
 
 #ifndef _SCENE_RENDER_QUEUE_H_
-#include "2d/scene/SceneRenderQueue.h"
+#include "2d/scene/sceneRenderQueue.h"
 #endif
 
 #ifndef _SCENE_RENDER_OBJECT_H_
-#include "2d/scene/SceneRenderObject.h"
+#include "2d/scene/sceneRenderObject.h"
 #endif
 
 #ifndef _BEHAVIOR_COMPONENT_H_

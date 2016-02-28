@@ -24,11 +24,11 @@
 #define _WORLD_QUERY_H_
 
 #ifndef _WORLD_QUERY_FILTER_H_
-#include "2d/scene/WorldQueryFilter.h"
+#include "2d/scene/worldQueryFilter.h"
 #endif
 
 #ifndef _WORLD_QUERY_RESULT_H_
-#include "2d/scene/WorldQueryResult.h"
+#include "2d/scene/worldQueryResult.h"
 #endif
 
 ///-----------------------------------------------------------------------------

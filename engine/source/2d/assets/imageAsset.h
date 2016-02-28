@@ -32,11 +32,11 @@
 #endif
 
 #ifndef _VECTOR2_H_
-#include "2d/core/Vector2.h"
+#include "2d/core/vector2.h"
 #endif
 
 #ifndef _TEXTURE_MANAGER_H_
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #endif
 
 //-----------------------------------------------------------------------------

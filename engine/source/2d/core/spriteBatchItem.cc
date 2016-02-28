@@ -21,19 +21,19 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SPRITE_BATCH_ITEM_H_
-#include "2d/core/SpriteBatchItem.h"
+#include "2d/core/spriteBatchItem.h"
 #endif
 
 #ifndef _SPRITE_BATCH_H_
-#include "2d/core/SpriteBatch.h"
+#include "2d/core/spriteBatch.h"
 #endif
 
 #ifndef _SCENE_RENDER_REQUEST_H_
-#include "2d/scene/SceneRenderRequest.h"
+#include "2d/scene/sceneRenderRequest.h"
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 //-----------------------------------------------------------------------------

@@ -25,7 +25,7 @@
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 //-----------------------------------------------------------------------------

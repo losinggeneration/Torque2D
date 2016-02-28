@@ -24,11 +24,11 @@
 #define _ANIMATION_CONTROLLER_H_
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ANIMATION_ASSET_H_
-#include "2d/assets/AnimationAsset.h"
+#include "2d/assets/animationAsset.h"
 #endif
 
 #ifndef _ASSET_PTR_H_

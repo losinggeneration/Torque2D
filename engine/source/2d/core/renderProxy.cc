@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _RENDER_PROXY_H_
-#include "2d/core/RenderProxy.h"
+#include "2d/core/renderProxy.h"
 #endif
 
 #ifndef _CONSOLETYPES_H_
@@ -37,7 +37,7 @@
 #endif
 
 // Script bindings.
-#include "RenderProxy_ScriptBinding.h"
+#include "renderProxy_ScriptBinding.h"
 
 //------------------------------------------------------------------------------
 

@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #include "graphics/dgl.h"
-#include "2d/scene/DebugDraw.h"
+#include "2d/scene/debugDraw.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

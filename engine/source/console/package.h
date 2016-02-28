@@ -37,7 +37,7 @@
 #endif
 
 #include "tHashTable.h"
-#include "Namespace.h"
+#include "namespace.h"
 
 
 class ExprEvalState;

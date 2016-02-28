@@ -20,8 +20,8 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "graphics/TextureHandle.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureHandle.h"
+#include "graphics/textureManager.h"
 #include "platform/platformAssert.h"
 
 //-----------------------------------------------------------------------------

@@ -20,14 +20,14 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "2d/scene/WorldQuery.h"
+#include "2d/scene/worldQuery.h"
 
 #ifndef _SCENE_H_
-#include "Scene.h"
+#include "scene.h"
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 // Debug Profiling.

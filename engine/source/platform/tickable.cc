@@ -20,7 +20,7 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 
 // The statics
 U32 Tickable::smLastTick = 0;

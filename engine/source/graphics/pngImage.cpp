@@ -19,7 +19,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
-#include "PNGImage.h"
+#include "pngImage.h"
 #include "math/mPoint.h"
 #include "graphics/gBitmap.h"
 #include "platform/platformGL.h"

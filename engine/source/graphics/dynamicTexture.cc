@@ -20,8 +20,8 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "graphics/DynamicTexture.h"
-#include "graphics/TextureManager.h"
+#include "graphics/dynamicTexture.h"
+#include "graphics/textureManager.h"
 
 //-----------------------------------------------------------------------------
 

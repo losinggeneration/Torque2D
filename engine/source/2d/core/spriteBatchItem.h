@@ -24,7 +24,7 @@
 #define _SPRITE_BATCH_ITEM_H_
 
 #ifndef _SPRITE_PROXY_BASE_H_
-#include "2d/core/SpriteProxyBase.h"
+#include "2d/core/spriteProxyBase.h"
 #endif
 
 #ifndef _SIM_OBJECT_PTR_H_

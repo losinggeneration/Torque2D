@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SPRITE_PROXY_BASE_H_
-#include "2d/core/SpriteProxyBase.h"
+#include "2d/core/spriteProxyBase.h"
 #endif
 
 #ifndef _DGL_H_

@@ -23,7 +23,7 @@
 #include "console/consoleTypes.h"
 #include "console/console.h"
 #include "graphics/gBitmap.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "io/resource/resourceManager.h"
 #include "platform/event.h"
 #include "graphics/dgl.h"

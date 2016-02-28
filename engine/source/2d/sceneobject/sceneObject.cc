@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 #ifndef _DGL_H_
@@ -53,19 +53,19 @@
 #endif
 
 #ifndef _SCENE_OBJECT_TIMER_EVENT_H_
-#include "2d/sceneobject/SceneObjectTimerEvent.h"
+#include "2d/sceneobject/sceneObjectTimerEvent.h"
 #endif
 
 #ifndef _SCENE_OBJECT_MOVE_TO_EVENT_H_
-#include "2d/sceneobject/SceneObjectMoveToEvent.h"
+#include "2d/sceneobject/sceneObjectMoveToEvent.h"
 #endif
 
 #ifndef _SCENE_OBJECT_ROTATE_TO_EVENT_H_
-#include "2d/sceneobject/SceneObjectRotateToEvent.h"
+#include "2d/sceneobject/sceneObjectRotateToEvent.h"
 #endif
 
 #ifndef _RENDER_PROXY_H_
-#include "2d/core/RenderProxy.h"
+#include "2d/core/renderProxy.h"
 #endif
 
 #ifndef _STRINGUNIT_H_
@@ -73,7 +73,7 @@
 #endif
 
 // Script bindings.
-#include "SceneObject_ScriptBinding.h"
+#include "sceneObject_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

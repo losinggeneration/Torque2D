@@ -22,7 +22,7 @@
 
 #include "game/defaultGame.h"
 #include "platform/types.h"
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 #include "platform/platform.h"
 #include "platform/platformVideo.h"
 #include "platform/platformInput.h"
@@ -35,7 +35,7 @@
 #include "graphics/gBitmap.h"
 #include "io/resource/resourceManager.h"
 #include "io/fileStream.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "console/console.h"
 #include "sim/simBase.h"
 #include "gui/guiCanvas.h"
@@ -46,7 +46,7 @@
 #include "debug/telnetDebugger.h"
 #include "console/consoleTypes.h"
 #include "math/mathTypes.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #include "io/resource/resourceManager.h"
 #include "platform/platformVideo.h"
 #include "network/netStringTable.h"
@@ -66,7 +66,7 @@
 #endif
 
 #ifndef _REMOTE_DEBUGGER_BRIDGE_H_
-#include "debug/remote/RemoteDebuggerBridge.h"
+#include "debug/remote/remoteDebuggerBridge.h"
 #endif
 
 #ifndef _MODULE_MANAGER_H

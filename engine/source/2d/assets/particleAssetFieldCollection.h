@@ -24,7 +24,7 @@
 #define _PARTICLE_ASSET_FIELD_COLLECTION_H_
 
 #ifndef _PARTICLE_ASSET_FIELD_H_
-#include "2d/assets/ParticleAssetField.h"
+#include "2d/assets/particleAssetField.h"
 #endif
 
 #ifndef _HASHTABLE_H

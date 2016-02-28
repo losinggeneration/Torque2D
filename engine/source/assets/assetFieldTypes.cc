@@ -33,11 +33,11 @@
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ANIMATION_ASSET_H_
-#include "2d/assets/AnimationAsset.h"
+#include "2d/assets/animationAsset.h"
 #endif
 
 #ifndef _AUDIO_ASSET_H_

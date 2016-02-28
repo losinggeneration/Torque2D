@@ -34,16 +34,16 @@
 
 // declare stub functions
 #define GL_FUNCTION(fn_return, fn_name, fn_args, fn_value) fn_return stub_##fn_name fn_args{ fn_value }
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
-#include "platform/GLUFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
+#include "platform/gluFunc.h"
 #undef GL_FUNCTION
 
 // point gl function pointers at stub functions
 #define GL_FUNCTION(fn_return,fn_name,fn_args, fn_value) fn_return (*fn_name)fn_args = stub_##fn_name;
-#include "platform/GLCoreFunc.h"
-#include "platform/GLExtFunc.h"
-#include "platform/GLUFunc.h"
+#include "platform/glCoreFunc.h"
+#include "platform/glExtFunc.h"
+#include "platform/gluFunc.h"
 #undef GL_FUNCTION
 
 GLState gGLState;

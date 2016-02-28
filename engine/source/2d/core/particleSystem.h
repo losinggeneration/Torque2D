@@ -24,7 +24,7 @@
 #define _PARTICLE_SYSTEM_H_
 
 #ifndef _ANIMATION_CONTROLLER_H_
-#include "2d/assets/AnimationController.h"
+#include "2d/assets/animationController.h"
 #endif
 
 //-----------------------------------------------------------------------------

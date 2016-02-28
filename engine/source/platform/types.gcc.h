@@ -112,6 +112,11 @@ typedef unsigned long long  U64;
 #  define TORQUE_CPU_X86
 #  define TORQUE_LITTLE_ENDIAN
 
+#elif defined(__amd64__) || defined(__amd64)
+#  define TORQUE_CPU_STRING "Intel x86_64"
+#  define TORQUE_CPU_X86_64
+#  define TORQUE_LITTLE_ENDIAN
+
 #elif defined(__ppc__)
 #  define TORQUE_CPU_STRING "PowerPC"
 #  define TORQUE_CPU_PPC

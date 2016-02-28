@@ -26,15 +26,15 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SCENE_RENDER_QUEUE_H_
-#include "2d/scene/SceneRenderQueue.h"
+#include "2d/scene/sceneRenderQueue.h"
 #endif
 
 #ifndef _SCENE_RENDER_STATE_H_
-#include "2d/scene/SceneRenderState.h"
+#include "2d/scene/sceneRenderState.h"
 #endif
 
 #ifndef _BATCH_RENDER_H_
-#include "2d/core/BatchRender.h"
+#include "2d/core/batchRender.h"
 #endif
 
 //-----------------------------------------------------------------------------

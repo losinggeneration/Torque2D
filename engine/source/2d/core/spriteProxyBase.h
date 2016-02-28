@@ -24,19 +24,19 @@
 #define _SPRITE_PROXY_BASE_H_
 
 #ifndef _BATCH_RENDER_H_
-#include "BatchRender.h"
+#include "batchRender.h"
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ANIMATION_ASSET_H_
-#include "2d/assets/AnimationAsset.h"
+#include "2d/assets/animationAsset.h"
 #endif
 
 #ifndef _ANIMATION_CONTROLLER_H_
-#include "2d/assets/AnimationController.h"
+#include "2d/assets/animationController.h"
 #endif
 
 #ifndef _GUICONTROL_H_
@@ -44,7 +44,7 @@
 #endif
 
 #ifndef _TICKABLE_H_
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 #endif
 
 //------------------------------------------------------------------------------

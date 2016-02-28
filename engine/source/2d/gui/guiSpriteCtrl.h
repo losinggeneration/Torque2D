@@ -28,11 +28,11 @@
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 #ifndef _ANIMATION_CONTROLLER_H_
-#include "2d/assets/AnimationController.h"
+#include "2d/assets/animationController.h"
 #endif
 
 #ifndef _ASSET_PTR_H_
@@ -40,7 +40,7 @@
 #endif
 
 #ifndef _TICKABLE_H_
-#include "platform/Tickable.h"
+#include "platform/tickable.h"
 #endif
 
 //-----------------------------------------------------------------------------

@@ -20,8 +20,8 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "graphics/TextureDictionary.h"
-#include "graphics/TextureManager.h"
+#include "graphics/textureDictionary.h"
+#include "graphics/textureManager.h"
 #include "console/console.h"
 #include "console/consoleTypes.h"
 #include "collection/vector.h"

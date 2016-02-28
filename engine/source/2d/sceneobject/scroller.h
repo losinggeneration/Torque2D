@@ -24,11 +24,11 @@
 #define _SCROLLER_H_
 
 #ifndef _SPRITE_BASE_H_
-#include "2d/core/SpriteBase.h"
+#include "2d/core/spriteBase.h"
 #endif
 
 #ifndef _TEXTURE_MANAGER_H_
-#include "graphics/TextureManager.h"
+#include "graphics/textureManager.h"
 #endif
 
 //-----------------------------------------------------------------------------

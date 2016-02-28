@@ -24,15 +24,15 @@
 #define _RENDER_PROXY_H_
 
 #ifndef _BATCH_RENDER_H_
-#include "BatchRender.h"
+#include "batchRender.h"
 #endif
 
 #ifndef _SPRITE_PROXY_BASE_H_
-#include "2d/core/SpriteProxyBase.h"
+#include "2d/core/spriteProxyBase.h"
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 //------------------------------------------------------------------------------

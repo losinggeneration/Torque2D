@@ -25,8 +25,8 @@
 #include "console/consoleTypes.h"
 #include "console/console.h"
 #include "math/mRandom.h"
-#include "2d/sceneobject/SceneObject.h"
-#include "2d/core/Utility.h"
+#include "2d/sceneobject/sceneObject.h"
+#include "2d/core/utility.h"
 
 //-----------------------------------------------------------------------------
 

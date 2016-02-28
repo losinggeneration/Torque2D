@@ -35,8 +35,8 @@
 #include "console/compiler.h"
 
 
-#include "Package.h"
-#include "Namespace.h"
+#include "package.h"
+#include "namespace.h"
 #include "tHashTable.h"
 
 //-Mat contains ALL packages

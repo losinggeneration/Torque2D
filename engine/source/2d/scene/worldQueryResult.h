@@ -24,7 +24,7 @@
 #define _WORLD_QUERY_RESULT_H_
 
 #ifndef _VECTOR2_H_
-#include "2d/core/Vector2.h"
+#include "2d/core/vector2.h"
 #endif
 
 ///-----------------------------------------------------------------------------

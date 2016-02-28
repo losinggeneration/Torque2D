@@ -20,7 +20,7 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "2d/assets/ParticleAssetField.h"
+#include "2d/assets/particleAssetField.h"
 
 #ifndef _CORE_MATH_H_
 #include "2d/core/coreMath.h"

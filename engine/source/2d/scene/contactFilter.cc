@@ -20,8 +20,8 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-#include "ContactFilter.h"
-#include "2d/sceneobject/SceneObject.h"
+#include "contactFilter.h"
+#include "2d/sceneobject/sceneObject.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

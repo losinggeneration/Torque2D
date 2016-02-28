@@ -24,7 +24,7 @@
 #define _TEXTURE_DICTIONARY_H_
 
 #ifndef _TEXTURE_OBJECT_H_
-#include "graphics/TextureObject.h"
+#include "graphics/textureObject.h"
 #endif
 
 //-----------------------------------------------------------------------------

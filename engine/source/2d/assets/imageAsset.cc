@@ -41,19 +41,19 @@
 #endif
 
 #ifndef _UTILITY_H_
-#include "2d/core/Utility.h"
+#include "2d/core/utility.h"
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 #ifndef _IMAGE_ASSET_H_
-#include "2d/assets/ImageAsset.h"
+#include "2d/assets/imageAsset.h"
 #endif
 
 // Script bindings.
-#include "ImageAsset_ScriptBinding.h"
+#include "imageAsset_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

@@ -33,7 +33,7 @@
 #endif
 
 #ifndef _TEXTURE_HANDLE_H_
-#include "graphics/TextureHandle.h"
+#include "graphics/textureHandle.h"
 #endif
 
 #ifndef _GBITMAP_H_

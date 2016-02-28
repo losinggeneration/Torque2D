@@ -21,7 +21,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef _SCENE_H_
-#include "Scene.h"
+#include "scene.h"
 #endif
 
 #ifndef _DGL_H_
@@ -37,15 +37,15 @@
 #endif
 
 #ifndef _SCENE_OBJECT_H_
-#include "2d/sceneobject/SceneObject.h"
+#include "2d/sceneobject/sceneObject.h"
 #endif
 
 #ifndef _CONTACT_FILTER_H_
-#include "ContactFilter.h"
+#include "contactFilter.h"
 #endif
 
 #ifndef _SCENE_RENDER_OBJECT_H_
-#include "2d/SceneRenderObject.h"
+#include "2d/sceneRenderObject.h"
 #endif
 
 #ifndef _PARTICLE_SYSTEM_H_
@@ -53,7 +53,7 @@
 #endif
 
 // Script bindings.
-#include "Scene_ScriptBinding.h"
+#include "scene_ScriptBinding.h"
 
 // Debug Profiling.
 #include "debug/profiler.h"

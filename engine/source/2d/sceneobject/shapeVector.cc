@@ -22,11 +22,11 @@
 
 #include "graphics/dgl.h"
 #include "console/consoleTypes.h"
-#include "2d/core/Utility.h"
-#include "ShapeVector.h"
+#include "2d/core/utility.h"
+#include "shapeVector.h"
 
 // Script bindings.
-#include "ShapeVector_ScriptBinding.h"
+#include "shapeVector_ScriptBinding.h"
 
 //----------------------------------------------------------------------------
 
